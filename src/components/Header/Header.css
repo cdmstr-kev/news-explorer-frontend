@@ -1,0 +1,58 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: rgba(255, 255, 255, .1) .5px solid;
+}
+
+.header__content {
+  margin-left: auto;
+}
+
+.header__logo {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 24px;
+  align-self: center;
+  letter-spacing: 0;
+  margin: 30px 0 26px 104px;
+  color: #ffffff;
+}
+
+.header__nav {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: white;
+  text-decoration: none;
+  padding-bottom: 26px;
+  border-bottom: 2px solid transparent;
+}
+
+.header__nav:hover {
+  text-decoration: none;
+  border-bottom: 2px solid #ffffff;
+}
+
+
+.header__btn {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  width: 176px;
+  height: 48px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 100px;
+  color: white;
+  margin: 19px 104px 13px 40px;
+  cursor: pointer;
+}
+/*Todo review this selector to see if is allowed */
+.header__btn a {
+  text-decoration: none;
+  color: white;
+}

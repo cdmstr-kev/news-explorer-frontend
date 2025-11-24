@@ -1,0 +1,32 @@
+.main__hero {
+  text-align: center;
+  color: white;
+}
+
+.main__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main__title {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 64px;
+  font-size: 60px;
+  margin: 80px auto 32px auto;
+  letter-spacing: 0;
+  color: white;
+
+}
+
+.main__subtitle {
+  margin: 0;
+  color: white;
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin-bottom: 88px;
+}
