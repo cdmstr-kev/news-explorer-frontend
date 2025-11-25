@@ -1,4 +1,3 @@
-import React from 'react'
 import avatarPlaceholder from "../../assets/avatar-placeholder.png";
 import "./About.css"
 

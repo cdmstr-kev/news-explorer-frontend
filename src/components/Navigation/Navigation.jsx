@@ -1,4 +1,3 @@
-import React from 'react'
 import logoutIcon from "../../assets/logout.png";
 import "./Navigation.css"
 
@@ -16,6 +15,9 @@ const Navigation = ({isLoggedIn}) => {
                 <img src={logoutIcon} alt="logout-icon"/>
               </div>
             </button>
+
+
+
 
         ):(
             <button type="button" className="nav__btn">

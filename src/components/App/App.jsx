@@ -27,7 +27,7 @@ function App() {
               path="/"
               element={
                 <Main
-                    searchQuery={searchQuery}
+                  searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
                     onSubmit={handleSearch}
                 />

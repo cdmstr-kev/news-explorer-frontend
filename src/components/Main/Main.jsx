@@ -1,4 +1,3 @@
-import React from 'react'
 import './Main.css'
 import SearchForm from "../SearchForm/SearchForm.jsx";
 import About from "../About/About.jsx";
