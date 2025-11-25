@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer.jsx";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -16,7 +17,10 @@ function App() {
   return (
     <div className="app">
       <div className="app__content">
-        <Header />
+        <Header
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        />
         <Main
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
@@ -24,9 +28,6 @@ function App() {
         />
         <Footer/>
       </div>
-
-
-
     </div>
   )
 }
