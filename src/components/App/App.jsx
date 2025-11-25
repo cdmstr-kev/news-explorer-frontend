@@ -2,6 +2,7 @@ import './App.css'
 import Header from '../Header/Header.jsx'
 import Main from '../Main/Main.jsx'
 import {useState} from "react";
+import Footer from "../Footer/Footer.jsx";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -21,6 +22,7 @@ function App() {
             setSearchQuery={setSearchQuery}
             onSubmit={handleSearch}
         />
+        <Footer/>
       </div>
 
 

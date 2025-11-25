@@ -1,0 +1,40 @@
+.footer {
+  display: flex;
+  padding: 0 104px 0 104px;
+  box-sizing: border-box;
+  margin: 36px 0 26px 0;
+}
+
+.footer__copyright {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #B6BCBF;
+  margin: 0;
+}
+
+.footer__link {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #1A1B22;
+  text-decoration: none;
+}
+
+.footer__nav {
+  display: flex;
+  margin-left: auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.footer__social {
+  display: flex;
+  gap: 24px;
+  align-self: center;
+  margin-left: 40px;
+}
