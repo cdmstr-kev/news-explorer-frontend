@@ -1,6 +1,6 @@
 import React from 'react'
 import './Main.css'
-import SearchForm from "../../SearchForm/SearchForm.jsx";
+import SearchForm from "../SearchForm/SearchForm.jsx";
 
 export const Main = ( {searchQuery, setSearchQuery, onSubmit }) => {
   return (
