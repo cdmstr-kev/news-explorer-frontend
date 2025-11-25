@@ -2,6 +2,7 @@
   max-width: 1440px;
   margin-right: auto;
   margin-left: auto;
+  padding: 0 10px 0 10px;
 }
 
 .app__content {
