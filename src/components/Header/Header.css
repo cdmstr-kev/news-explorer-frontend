@@ -25,11 +25,14 @@
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
-  color: white;
+  color: #B6BCBF;
   text-decoration: none;
   padding-bottom: 26px;
   border-bottom: 2px solid transparent;
   margin-right: 76px;
+}
+.header__nav:hover {
+  color: white;
 }
 
 .header__nav_position_right {

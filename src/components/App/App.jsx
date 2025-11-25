@@ -1,7 +1,9 @@
+import { Routes, Route, useNavigate } from "react-router-dom";
+import {useState} from "react";
+
 import './App.css'
 import Header from '../Header/Header.jsx'
 import Main from '../Main/Main.jsx'
-import {useState} from "react";
 import Footer from "../Footer/Footer.jsx";
 
 function App() {
@@ -21,11 +23,18 @@ function App() {
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         />
-        <Main
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            onSubmit={handleSearch}
-        />
+        <Routes>
+          <Route
+              path="/"
+              element={
+                <Main
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                    onSubmit={handleSearch}
+                />
+              } />
+        </Routes>
+
         <Footer/>
       </div>
     </div>
