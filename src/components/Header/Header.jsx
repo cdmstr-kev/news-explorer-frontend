@@ -8,7 +8,7 @@ const Header = () => {
         <div className={ "header__content"}>
           <a className={"header__nav "} href="https://vitejs.dev" target="_blank">HOME</a>
           <button type="button" className="header__btn">
-            <a href="https://react.dev" target="_blank">Signup</a>
+            <a href="https://react.dev" target="_blank">Sign in</a>
           </button>
         </div>
       </header>
