@@ -1,0 +1,39 @@
+.about {
+  width: 100%;
+}
+
+.author {
+  width: 100%;
+  display: flex;
+  margin-top: 160px;
+  gap: 56px;
+  padding: 0 104px 80px 104px;
+  box-sizing: border-box;
+}
+
+.author-info {
+  margin-top: 51px;
+}
+
+.author-avatar {
+  max-width: 464px;
+  max-height: 464px;
+}
+
+.author-title {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 46px;
+  font-size: 40px;
+  letter-spacing: 0;
+  margin: 0 0 24px 0;
+}
+
+.author-desc {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  font-weight: 400;
+  margin-top: 0;
+}

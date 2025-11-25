@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import {useState} from "react";
 
 import './App.css'
@@ -21,7 +21,6 @@ function App() {
       <div className="app__content">
         <Header
         isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
         />
         <Routes>
           <Route
