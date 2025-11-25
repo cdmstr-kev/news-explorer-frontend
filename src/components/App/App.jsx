@@ -1,43 +1,42 @@
 import { Routes, Route } from "react-router-dom";
-import {useState} from "react";
+import { useState } from "react";
 
-import './App.css'
-import Header from '../Header/Header.jsx'
-import Main from '../Main/Main.jsx'
+import "./App.css";
+import Header from "../Header/Header.jsx";
+import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleSearch = (e) => {
-    e.preventDefault()
-    console.log(searchQuery)
-    setSearchQuery("")
-  }
+    e.preventDefault();
+    console.log(searchQuery);
+    setSearchQuery("");
+  };
 
   return (
     <div className="app">
       <div className="app__content">
-        <Header
-        isLoggedIn={isLoggedIn}
-        />
+        <Header isLoggedIn={isLoggedIn} />
         <Routes>
           <Route
-              path="/"
-              element={
-                <Main
-                  searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    onSubmit={handleSearch}
-                />
-              } />
+            path="/"
+            element={
+              <Main
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                onSubmit={handleSearch}
+              />
+            }
+          />
         </Routes>
 
-        <Footer/>
+        <Footer />
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
