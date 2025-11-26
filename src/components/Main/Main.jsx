@@ -1,10 +1,12 @@
 import "./Main.css";
 import SearchForm from "../SearchForm/SearchForm.jsx";
 import About from "../About/About.jsx";
+import hero from "../../assets/hero.png";
 
 export const Main = ({ searchQuery, setSearchQuery, onSubmit }) => {
   return (
     <main className="main__container">
+      <img className={"hero"} src={hero} alt="" />
       <div className="main__main">
         <h1 className="main__title">
           What's going on in

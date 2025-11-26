@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
+import SavedNews from "../SavedNews/SavedNews.jsx";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,10 +17,25 @@ function App() {
     setSearchQuery("");
   };
 
+  const handleSignOut = (e) => {
+    console.log("signOut");
+    setIsLoggedIn(false);
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    console.log("signIn");
+    setIsLoggedIn(true);
+  };
+
   return (
     <div className="app">
       <div className="app__content">
-        <Header isLoggedIn={isLoggedIn} />
+        <Header
+          handleSignIn={handleSignIn}
+          handleSignOut={handleSignOut}
+          isLoggedIn={isLoggedIn}
+        />
         <Routes>
           <Route
             path="/"
@@ -30,6 +46,10 @@ function App() {
                 onSubmit={handleSearch}
               />
             }
+          />
+          <Route
+            path={"/savedNews"}
+            element={<SavedNews searchQuery={searchQuery} />}
           />
         </Routes>
 

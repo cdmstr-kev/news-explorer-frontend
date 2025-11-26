@@ -1,39 +1,32 @@
 import logoutIcon from "../../assets/logout.png";
 import "./Navigation.css";
+import { Link } from "react-router-dom";
 
-const Navigation = ({ isLoggedIn }) => {
+const Navigation = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
   return (
     <div className={"nav"}>
-      <a
+      <Link
+        to={"/"}
         className={`nav__title ${!isLoggedIn ? "nav__title_position_right" : ""} `}
-        href="https://vitejs.dev"
-        target="_blank"
       >
         HOME
-      </a>
+      </Link>
       {isLoggedIn && (
-        <a
+        <Link
+          to={"/savedNews"}
           className={"nav__title nav__title_position_right "}
-          href="https://vitejs.dev"
-          target="_blank"
         >
           Saved articles
-        </a>
+        </Link>
       )}
       {isLoggedIn ? (
-        <button type="button" className="nav__btn">
-          <div className={"nav__signout-btn"}>
-            <a href="https://react.dev" target="_blank">
-              Sign out
-            </a>
-            <img src={logoutIcon} alt="logout-icon" />
-          </div>
+        <button type="button" onClick={handleSignOut} className="nav__btn">
+          Sign out
+          <img className={"nav__btn-icon"} src={logoutIcon} alt="logout-icon" />
         </button>
       ) : (
-        <button type="button" className="nav__btn">
-          <a href="https://react.dev" target="_blank">
-            Sign in
-          </a>
+        <button onClick={handleSignIn} type="button" className="nav__btn">
+          Sign in
         </button>
       )}
     </div>

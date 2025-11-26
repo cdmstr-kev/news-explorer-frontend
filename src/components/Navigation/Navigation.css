@@ -1,5 +1,7 @@
 .nav {
   margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 .nav__title {
@@ -7,17 +9,15 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  letter-spacing: 0;
   color: #B6BCBF;
   text-decoration: none;
   padding-bottom: 26px;
   border-bottom: 2px solid transparent;
-  margin-right: 76px;
+  margin: 30px 76px 0 0;
 }
 
 .nav__title:hover {
   color: white;
-  text-decoration: none;
   border-bottom: 2px solid #ffffff;
 }
 
@@ -29,7 +29,6 @@
   font-family: 'roboto', Georgia, 'Times New Roman', serif;
   font-size: 18px;
   line-height: 24px;
-  letter-spacing: 0;
   width: 176px;
   height: 48px;
   background: transparent;
@@ -38,19 +37,14 @@
   color: white;
   margin: 19px 104px 13px 40px;
   cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 /*Todo review this selector to see if is allowed */
 .nav__btn a {
   text-decoration: none;
   color: white;
-}
-
-.nav__signout-btn {
-  padding: 0 15px 0 19px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 2px;
 }

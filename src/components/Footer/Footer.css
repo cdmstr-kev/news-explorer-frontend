@@ -1,8 +1,9 @@
 .footer {
-  display: flex;
-  padding: 0 104px 0 104px;
+  width: 100%;
+  padding: 32px 104px 0 104px;
   box-sizing: border-box;
-  margin: 36px 0 26px 0;
+  margin: auto 0 26px 0;
+  display: flex;
 }
 
 .footer__copyright {

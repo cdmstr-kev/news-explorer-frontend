@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  flex-direction: row;
   width: 100%;
   border-bottom: rgba(255, 255, 255, .1) .5px solid;
 }
@@ -14,7 +13,6 @@
   font-size: 20px;
   line-height: 24px;
   align-self: center;
-  letter-spacing: 0;
   margin: 30px 0 26px 104px;
   color: #ffffff;
 }

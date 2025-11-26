@@ -5,6 +5,13 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.hero {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
 .main__main {
   max-width: 608px;
 }
@@ -15,7 +22,6 @@
   line-height: 64px;
   font-size: 60px;
   margin: 80px auto 32px auto;
-  letter-spacing: 0;
   color: white;
 
 }
@@ -27,5 +33,4 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  letter-spacing: 0;
 }
