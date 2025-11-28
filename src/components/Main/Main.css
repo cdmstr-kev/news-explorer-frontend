@@ -1,4 +1,4 @@
-.main__container {
+.main {
   width: 100%;
   display: flex;
   align-items: center;
@@ -6,13 +6,13 @@
   flex-direction: column;
 }
 
-.hero {
+.main__hero-bg {
   position: absolute;
   top: 0;
   z-index: -1;
 }
 
-.main__main {
+.main__hero {
   max-width: 608px;
 }
 
@@ -33,4 +33,19 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+}
+
+.main__content {
+  width: 100%;
+  min-height: 282px;
+  padding-left: 104px;
+  box-sizing: border-box;
+}
+
+.main__content-title {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  margin: 160px auto 64px 0;
 }
