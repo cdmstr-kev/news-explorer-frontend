@@ -17,16 +17,25 @@ export const Main = ({ searchQuery, setSearchQuery, onSubmit }) => {
           Find the lastest news on any topic and save the in your personal
           account.
         </h2>
+        <SearchForm
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          onSubmit={onSubmit}
+        />
       </section>
-      <SearchForm
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        onSubmit={onSubmit}
-      />
       <section className={"main__content"}>
         <h1 className={"main__content-title"}>Search results</h1>
 
-        <NewsCard />
+        <ul className={"main__card-list"}>
+          <NewsCard />
+          <NewsCard />
+          <NewsCard />
+          <NewsCard />
+        </ul>
+
+        <button type={"button"} className={"main__show-more"}>
+          Show more
+        </button>
       </section>
       <About />
     </main>

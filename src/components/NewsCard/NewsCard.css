@@ -1,3 +1,67 @@
-.newsCard-container {
-  width: 100%;
+.card {
+  max-width: 400px;
+  max-height: 576px;
+  text-decoration: none;
+  list-style: none;
+  /*border: 1px solid red;*/
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+  /*margin-bottom: 64px;*/
 }
+
+.card__image {
+}
+
+.card__date {
+  /*TODO change font to Sans Pro like design */
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+  margin: 0 auto 12px auto;
+}
+
+.card__contents {
+  padding: 20px 24px 18px;
+}
+
+.card__title {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  margin: 0 auto 16px auto;
+}
+
+.card__description {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0 auto 18px auto;
+}
+
+.card__subtitle {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin: 0 auto 24px auto;
+  color: #B6BCBF;
+}
+
+.card__bookmark {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border-radius: 8px;
+}
+
