@@ -25,9 +25,11 @@ function App() {
   });
 
   const [news, setNews] = useState([]);
+  const [tags, setTags] = useState("Default");
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setTags(searchQuery);
     setArticlesToShow(3);
 
     queryNewsAPI(searchQuery)
@@ -52,19 +54,23 @@ function App() {
   };
 
   const handleBookmark = (article) => {
-    console.log(article);
+    // console.log(article);
     if (!isLoggedIn) return;
 
+    const articleWithTag = { ...article, tag: tags };
+
+    console.log(articleWithTag);
+
     const alreadyBookmarked = bookmarkedNews.some(
-      (item) => item.url === article.url
+      (item) => item.url === articleWithTag.url
     );
 
     if (alreadyBookmarked) {
       setBookmarkedNews(
-        bookmarkedNews.filter((item) => item.url !== article.url)
+        bookmarkedNews.filter((item) => item.url !== articleWithTag.url)
       );
     } else {
-      setBookmarkedNews([...bookmarkedNews, article]);
+      setBookmarkedNews([...bookmarkedNews, articleWithTag]);
     }
   };
 
@@ -84,6 +90,7 @@ function App() {
 
   useEffect(() => {
     setIsLoading(true);
+    setTags("Default");
 
     queryNewsAPI(searchQuery)
       .then((data) => {
@@ -122,7 +129,7 @@ function App() {
             }
           />
           <Route
-            path={"/savedNews"}
+            path={"/saved-news"}
             element={
               <SavedNews
                 searchQuery={searchQuery}

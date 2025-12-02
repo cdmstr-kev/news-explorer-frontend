@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const Navigation = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
   const location = useLocation();
-  const isOnSavedNews = location.pathname === "/savedNews";
+  const isOnSavedNews = location.pathname === "/saved-news";
 
   return (
     <div className={"nav"}>
@@ -22,7 +22,7 @@ const Navigation = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
       </Link>
       {isLoggedIn && (
         <Link
-          to={"/savedNews"}
+          to={"/saved-news"}
           className={`
           nav__title 
           nav__title_position_right

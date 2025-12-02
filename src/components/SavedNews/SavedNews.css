@@ -1,5 +1,5 @@
 .saved-news__container {
-  padding: 40px 104px 62px 104px ;
+  padding: 40px 104px 30px 104px ;
 }
 
 .saved-news__articles {
@@ -65,4 +65,20 @@
 
 .saved-news__btnIcon {
 
+}
+
+.saved-news__tag {
+  position: absolute;
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+
+  top: 24px;
+  left: 24px;
+  background-color: #FFFFFF;
+  padding: 8px 22px;
+  margin: 0;
+  border-radius: 10px;
 }

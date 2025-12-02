@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 const Header = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
   const location = useLocation();
-  const isOnSavedNews = location.pathname === "/savedNews";
+  const isOnSavedNews = location.pathname === "/saved-news";
 
   return (
     <header className={`header ${isOnSavedNews ? "header_theme_dark" : ""}`}>

@@ -1,6 +1,5 @@
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import "./SavedNews.css";
-import trashIcon from "../../assets/trash.png";
 
 const SavedNews = ({ bookmarkedNews, handleDelete }) => {
   console.log(bookmarkedNews);
@@ -25,6 +24,9 @@ const SavedNews = ({ bookmarkedNews, handleDelete }) => {
             handleDelete(article);
           };
 
+          const formattedTag = article.tag;
+          console.log(formattedTag);
+
           return (
             <NewsCard key={article.url} newsArticle={article}>
               <button
@@ -32,6 +34,7 @@ const SavedNews = ({ bookmarkedNews, handleDelete }) => {
                 type={"button"}
                 className={"saved-news__trash"}
               ></button>
+              <h2 className={"saved-news__tag"}>{formattedTag}</h2>
             </NewsCard>
           );
         })}
