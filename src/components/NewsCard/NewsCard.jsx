@@ -5,11 +5,11 @@ import placeholder from "../../assets/placeholder.svg";
 
 const NewsCard = ({
   newsArticle,
-  onCardBookmarked,
-  bookmarkedNews,
-  isLoggedIn,
+  onCardBookmarked = () => {},
+  bookmarkedNews = [],
+  isLoggedIn = false,
 }) => {
-  const isThisArticleBookmarked = bookmarkedNews.includes(newsArticle.url);
+  const isThisArticleBookmarked = bookmarkedNews?.includes(newsArticle.url);
 
   const onToggleBookmark = () => {
     onCardBookmarked(newsArticle.url);

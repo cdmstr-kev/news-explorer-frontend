@@ -1,3 +1,5 @@
+import NewsCard from "../NewsCard/NewsCard.jsx";
+
 const SavedNews = () => {
   return (
     <div className={"saved-news__container"}>
@@ -7,6 +9,7 @@ const SavedNews = () => {
         By keywords: Nature, Yellowstone, and 2 other
       </p>
       <img src="" alt="" />
+      <section className={"saved-news__cardlist"}></section>
     </div>
   );
 };

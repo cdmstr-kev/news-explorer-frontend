@@ -21,6 +21,15 @@
   border-bottom: 2px solid #ffffff;
 }
 
+.nav__title_theme_dark {
+  color: #1A1B22;
+}
+
+.nav__title_theme_dark:hover {
+  color: #1A1B22;
+  border-bottom: 2px solid #1A1B22;
+}
+
 .nav__title_position_right {
   margin-right: 24px;
 }
@@ -48,3 +57,9 @@
   text-decoration: none;
   color: white;
 }
+
+.nav__btn_theme_dark {
+  border: 1px solid #1A1B22;
+  color: #1A1B22;
+}
+

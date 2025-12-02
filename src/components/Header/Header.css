@@ -4,6 +4,10 @@
   border-bottom: rgba(255, 255, 255, .1) .5px solid;
 }
 
+.header_theme_dark {
+  border-bottom: #1A1B22 .5px solid;
+}
+
 .header__content {
   margin-left: auto;
 }
@@ -15,4 +19,8 @@
   align-self: center;
   margin: 30px 0 26px 104px;
   color: #ffffff;
+}
+
+.header_theme_dark .header__logo {
+  color: #1A1B22;
 }

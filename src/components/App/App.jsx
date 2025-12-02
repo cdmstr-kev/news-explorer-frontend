@@ -8,15 +8,15 @@ import Footer from "../Footer/Footer.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
 import * as api from "../../utils/api.js";
 // import { getTopHeadlines } from "../../utils/newsapi.js";
-import {queryNewsAPI} from "../../utils/newsapi.js";
+import { queryNewsAPI } from "../../utils/newsapi.js";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [articlesToShow, setArticlesToShow] = useState(3)
+  const [articlesToShow, setArticlesToShow] = useState(3);
 
-  const [bookmarkedNews, setBookmarkedNews] = useState([])
+  const [bookmarkedNews, setBookmarkedNews] = useState([]);
   const [news, setNews] = useState([]);
 
   const handleSearch = (e) => {
@@ -24,16 +24,15 @@ function App() {
     setArticlesToShow(3);
 
     queryNewsAPI(searchQuery)
-        .then(data => {
-          setNews(data.articles)
-          setIsLoading(false)
-        })
-        .catch((err) => {
-          console.error("Failed to fetch clothing items:", err);
-        });
+      .then((data) => {
+        setNews(data.articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch clothing items:", err);
+      });
 
     setSearchQuery("");
-
   };
 
   const handleSignOut = (e) => {
@@ -50,26 +49,32 @@ function App() {
   const handleBookmark = (articleUrl) => {
     if (!isLoggedIn) return;
 
-    const alreadyBookmarked = bookmarkedNews.includes(articleUrl)
+    const alreadyBookmarked = bookmarkedNews.includes(articleUrl);
 
-    if(alreadyBookmarked) {
-      setBookmarkedNews(bookmarkedNews.filter(url => url !== articleUrl))
-    }else {
-      setBookmarkedNews([...bookmarkedNews, articleUrl])
+    if (alreadyBookmarked) {
+      setBookmarkedNews(bookmarkedNews.filter((url) => url !== articleUrl));
+    } else {
+      setBookmarkedNews([...bookmarkedNews, articleUrl]);
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("bookmarkedNews")) {
+      setBookmarkedNews(JSON.parse(localStorage.getItem("bookmarkedNews")));
+    }
+  }, [bookmarkedNews]);
 
   useEffect(() => {
     setIsLoading(true);
 
     queryNewsAPI(searchQuery)
-        .then(data => {
-          setNews(data.articles)
-          setIsLoading(false)
-        })
-        .catch((err) => {
-               console.error("Failed to fetch clothing items:", err);
-             });
+      .then((data) => {
+        setNews(data.articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch clothing items:", err);
+      });
   }, []);
 
   return (
