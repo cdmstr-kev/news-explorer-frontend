@@ -58,10 +58,8 @@ function App() {
 
     if (alreadyBookmarked) {
       setBookmarkedNews(bookmarkedNews.filter((url) => url !== articleUrl));
-      localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarkedNews));
     } else {
       setBookmarkedNews([...bookmarkedNews, articleUrl]);
-      localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarkedNews));
     }
   };
 
