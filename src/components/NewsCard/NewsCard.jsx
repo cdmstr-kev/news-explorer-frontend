@@ -3,18 +3,7 @@ import { stripHtml } from "../../utils/helpers.js";
 import { formatDate } from "../../utils/helpers.js";
 import placeholder from "../../assets/placeholder.svg";
 
-const NewsCard = ({
-  newsArticle,
-  onCardBookmarked = () => {},
-  bookmarkedNews = [],
-  isLoggedIn = false,
-}) => {
-  const isThisArticleBookmarked = bookmarkedNews?.includes(newsArticle.url);
-
-  const onToggleBookmark = () => {
-    onCardBookmarked(newsArticle.url);
-  };
-
+const NewsCard = ({ children, newsArticle }) => {
   const publishedDate = formatDate(newsArticle.publishedAt);
   const newsContent = stripHtml(newsArticle.description);
 
@@ -47,17 +36,7 @@ const NewsCard = ({
           <p className={"card__description"}>{newsContent}</p>
         )}
         <p className={"card__subtitle"}>{newsArticle.source.name}</p>
-        <div className={"card__actions"}>
-          <button
-            onClick={onToggleBookmark}
-            className={`card__bookmark ${isThisArticleBookmarked ? "card__bookmark_type_active" : ""}`}
-          ></button>
-          {!isLoggedIn && (
-            <span className={"card__alert card__alert_type_active"}>
-              Sign in to save articles
-            </span>
-          )}
-        </div>
+        {children}
       </div>
     </li>
   );

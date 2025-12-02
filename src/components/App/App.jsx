@@ -12,11 +12,18 @@ import { queryNewsAPI } from "../../utils/newsapi.js";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return JSON.parse(localStorage.getItem("isLoggedIn") || "false");
+  });
+
   const [isLoading, setIsLoading] = useState(false);
   const [articlesToShow, setArticlesToShow] = useState(3);
 
-  const [bookmarkedNews, setBookmarkedNews] = useState([]);
+  const [bookmarkedNews, setBookmarkedNews] = useState(() => {
+    const savedNews = localStorage.getItem("bookmarkedNews");
+    return savedNews ? JSON.parse(savedNews) : [];
+  });
+
   const [news, setNews] = useState([]);
 
   const handleSearch = (e) => {
@@ -36,13 +43,11 @@ function App() {
   };
 
   const handleSignOut = (e) => {
-    console.log("signOut");
     setIsLoggedIn(false);
   };
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log("signIn");
     setIsLoggedIn(true);
   };
 
@@ -53,16 +58,20 @@ function App() {
 
     if (alreadyBookmarked) {
       setBookmarkedNews(bookmarkedNews.filter((url) => url !== articleUrl));
+      localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarkedNews));
     } else {
       setBookmarkedNews([...bookmarkedNews, articleUrl]);
+      localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarkedNews));
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem("bookmarkedNews")) {
-      setBookmarkedNews(JSON.parse(localStorage.getItem("bookmarkedNews")));
-    }
+    localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarkedNews));
   }, [bookmarkedNews]);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
 
   useEffect(() => {
     setIsLoading(true);

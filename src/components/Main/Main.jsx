@@ -16,6 +16,10 @@ export const Main = ({
   articlesToShow,
   setArticlesToShow,
 }) => {
+  console.log("bookmarkedNews:", bookmarkedNews);
+  console.log("Type:", typeof bookmarkedNews);
+  console.log("Is array?", Array.isArray(bookmarkedNews));
+
   const displayedArticles = newsArray.slice(0, articlesToShow);
 
   const handleShowMore = () => {
@@ -55,15 +59,33 @@ export const Main = ({
             <h1 className={"main__content-title"}>Search results</h1>
 
             <ul className={"main__card-list"}>
-              {displayedArticles?.slice(0, articlesToShow).map((article) => (
-                <NewsCard
-                  key={article.url}
-                  newsArticle={article}
-                  onCardBookmarked={onCardBookmarked}
-                  bookmarkedNews={bookmarkedNews}
-                  isLoggedIn={isLoggedIn}
-                />
-              ))}
+              {displayedArticles?.slice(0, articlesToShow).map((article) => {
+                const isThisArticleBookmarked = bookmarkedNews?.includes(
+                  article.url
+                );
+
+                const handleToggle = () => {
+                  console.log(article.url);
+                  onCardBookmarked(article.url);
+                  console.log(bookmarkedNews);
+                };
+
+                return (
+                  <NewsCard key={article.url} newsArticle={article}>
+                    <div className={"card__actions"}>
+                      <button
+                        onClick={handleToggle}
+                        className={`card__bookmark ${isThisArticleBookmarked ? "card__bookmark_type_active" : ""}`}
+                      ></button>
+                      {!isLoggedIn && (
+                        <span className={"card__alert card__alert_type_active"}>
+                          Sign in to save articles
+                        </span>
+                      )}
+                    </div>
+                  </NewsCard>
+                );
+              })}
             </ul>
           </>
         )}
