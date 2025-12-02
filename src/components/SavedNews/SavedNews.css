@@ -1,2 +1,48 @@
-.saved__news-container {
+.saved-news__container {
+  padding: 40px 0 62px 0 ;
+}
+
+.saved-news__articles {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin: 0 104px 28px 104px;
+  color: rgba(26, 27, 34, 0.5);
+}
+
+.saved-news__title {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  letter-spacing: 0;
+
+
+  margin: 0 104px 30px 104px;
+}
+
+.saved-news__subtitle {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 104px 52px 104px;
+}
+
+.saved-news__subtitle_type_bold {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.saved-news__cardlist {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #F5F6F7;
+  height: 100vh;
+  padding: 0 104px 0 104px;
 }
