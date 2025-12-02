@@ -12,6 +12,10 @@
 }
 
 .card__image {
+  width: 400px;
+  height: 272px;
+  object-fit: cover;
+  padding: 0;
 }
 
 .card__date {
@@ -34,14 +38,23 @@
   font-size: 26px;
   line-height: 30px;
   margin: 0 auto 16px auto;
+  max-height: 60px;
+  overflow: hidden;
 }
-
+/*TODO review -webkit below*/
 .card__description {
   font-family: 'roboto', Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   margin: 0 auto 18px auto;
+  max-height: 110px;
+  overflow: hidden;
+
+  min-height: 88px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .card__subtitle {
@@ -51,7 +64,7 @@
   line-height: 20px;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  margin: 0 auto 24px auto;
+  margin: 0 auto 0 auto;
   color: #B6BCBF;
 }
 
@@ -63,5 +76,45 @@
   top: 24px;
   right: 24px;
   border-radius: 8px;
+  cursor: pointer;
+  background-image: url("../../assets/bookmark.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.card__bookmark:hover {
+  background-image: url("../../assets/bookmark-hover.png");
+}
+
+.card__bookmark_type_active {
+  background-image: url("../../assets/bookmark-active.png");
+}
+
+.card__alert {
+  display: flex;
+  align-items: center;
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  text-align: center;
+  vertical-align: middle;
+
+  position: absolute;
+  top: 24px;
+  right: 69px;
+  z-index: 1;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  padding: 11px 20px;
+  box-sizing: border-box;
+  margin: 0;
+  height: 40px;
+  visibility: hidden;
+}
+
+.card__actions:hover .card__alert_type_active {
+  visibility: visible;
 }
 

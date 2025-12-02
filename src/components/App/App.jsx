@@ -1,20 +1,39 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
+import * as api from "../../utils/api.js";
+// import { getTopHeadlines } from "../../utils/newsapi.js";
+import {queryNewsAPI} from "../../utils/newsapi.js";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [articlesToShow, setArticlesToShow] = useState(3)
+
+  const [bookmarkedNews, setBookmarkedNews] = useState([])
+  const [news, setNews] = useState([]);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(searchQuery);
+    setArticlesToShow(3);
+
+    queryNewsAPI(searchQuery)
+        .then(data => {
+          setNews(data.articles)
+          setIsLoading(false)
+        })
+        .catch((err) => {
+          console.error("Failed to fetch clothing items:", err);
+        });
+
     setSearchQuery("");
+
   };
 
   const handleSignOut = (e) => {
@@ -27,6 +46,31 @@ function App() {
     console.log("signIn");
     setIsLoggedIn(true);
   };
+
+  const handleBookmark = (articleUrl) => {
+    if (!isLoggedIn) return;
+
+    const alreadyBookmarked = bookmarkedNews.includes(articleUrl)
+
+    if(alreadyBookmarked) {
+      setBookmarkedNews(bookmarkedNews.filter(url => url !== articleUrl))
+    }else {
+      setBookmarkedNews([...bookmarkedNews, articleUrl])
+    }
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    queryNewsAPI(searchQuery)
+        .then(data => {
+          setNews(data.articles)
+          setIsLoading(false)
+        })
+        .catch((err) => {
+               console.error("Failed to fetch clothing items:", err);
+             });
+  }, []);
 
   return (
     <div className="app">
@@ -44,6 +88,13 @@ function App() {
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 onSubmit={handleSearch}
+                bookmarkedNews={bookmarkedNews}
+                onCardBookmarked={handleBookmark}
+                newsArray={news}
+                isLoading={isLoading}
+                isLoggedIn={isLoggedIn}
+                setArticlesToShow={setArticlesToShow}
+                articlesToShow={articlesToShow}
               />
             }
           />

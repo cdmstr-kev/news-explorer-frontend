@@ -1,7 +1,11 @@
 const SavedNews = () => {
   return (
-    <div className={"saved__news-container"}>
-      SavedNews
+    <div className={"saved-news__container"}>
+      <p className={"saved-news__articles"}>Saved articles</p>
+      <h1 className={"saved-news__title"}>Elise, You have 5 saved articles</h1>
+      <p className={"saved-news__subtitle"}>
+        By keywords: Nature, Yellowstone, and 2 other
+      </p>
       <img src="" alt="" />
     </div>
   );

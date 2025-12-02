@@ -3,8 +3,25 @@ import SearchForm from "../SearchForm/SearchForm.jsx";
 import About from "../About/About.jsx";
 import hero from "../../assets/hero.png";
 import NewsCard from "../NewsCard/NewsCard.jsx";
+import notFound from "../../assets/not-found.svg";
 
-export const Main = ({ searchQuery, setSearchQuery, onSubmit }) => {
+export const Main = ({
+  searchQuery,
+  setSearchQuery,
+  onSubmit,
+  newsArray,
+  onCardBookmarked,
+  bookmarkedNews,
+  isLoggedIn,
+  articlesToShow,
+  setArticlesToShow,
+}) => {
+  const displayedArticles = newsArray.slice(0, articlesToShow);
+
+  const handleShowMore = () => {
+    setArticlesToShow((prevCount) => prevCount + 3);
+  };
+
   return (
     <main className="main">
       <img className={"main__hero-bg"} src={hero} alt="" />
@@ -24,19 +41,44 @@ export const Main = ({ searchQuery, setSearchQuery, onSubmit }) => {
         />
       </section>
       <section className={"main__content"}>
-        <h1 className={"main__content-title"}>Search results</h1>
+        {displayedArticles?.length === 0 ? (
+          <div className={"main__not-found-container"}>
+            <img className={"main__not-found"} src={notFound} alt="" />
+            <h2 className={"main__not-found-title"}>Nothing found</h2>
+            <p className={"main__not-found-subtitle"}>
+              Sorry, but nothing matched
+              <br /> your search terms.
+            </p>
+          </div>
+        ) : (
+          <>
+            <h1 className={"main__content-title"}>Search results</h1>
 
-        <ul className={"main__card-list"}>
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-        </ul>
+            <ul className={"main__card-list"}>
+              {displayedArticles?.slice(0, articlesToShow).map((article) => (
+                <NewsCard
+                  key={article.url}
+                  newsArticle={article}
+                  onCardBookmarked={onCardBookmarked}
+                  bookmarkedNews={bookmarkedNews}
+                  isLoggedIn={isLoggedIn}
+                />
+              ))}
+            </ul>
+          </>
+        )}
 
-        <button type={"button"} className={"main__show-more"}>
-          Show more
-        </button>
+        {articlesToShow < newsArray.length && (
+          <button
+            type={"button"}
+            className={"main__show-more"}
+            onClick={() => handleShowMore()}
+          >
+            Show more
+          </button>
+        )}
       </section>
+
       <About />
     </main>
   );

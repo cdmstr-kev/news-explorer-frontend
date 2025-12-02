@@ -9,7 +9,7 @@ const Navigation = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
         to={"/"}
         className={`nav__title ${!isLoggedIn ? "nav__title_position_right" : ""} `}
       >
-        HOME
+        Home
       </Link>
       {isLoggedIn && (
         <Link
