@@ -51,16 +51,27 @@ function App() {
     setIsLoggedIn(true);
   };
 
-  const handleBookmark = (articleUrl) => {
+  const handleBookmark = (article) => {
+    console.log(article);
     if (!isLoggedIn) return;
 
-    const alreadyBookmarked = bookmarkedNews.includes(articleUrl);
+    const alreadyBookmarked = bookmarkedNews.some(
+      (item) => item.url === article.url
+    );
 
     if (alreadyBookmarked) {
-      setBookmarkedNews(bookmarkedNews.filter((url) => url !== articleUrl));
+      setBookmarkedNews(
+        bookmarkedNews.filter((item) => item.url !== article.url)
+      );
     } else {
-      setBookmarkedNews([...bookmarkedNews, articleUrl]);
+      setBookmarkedNews([...bookmarkedNews, article]);
     }
+  };
+
+  const handleDeleteBookmark = (article) => {
+    setBookmarkedNews(
+      bookmarkedNews.filter((item) => item.url !== article.url)
+    );
   };
 
   useEffect(() => {
@@ -112,7 +123,13 @@ function App() {
           />
           <Route
             path={"/savedNews"}
-            element={<SavedNews searchQuery={searchQuery} />}
+            element={
+              <SavedNews
+                searchQuery={searchQuery}
+                bookmarkedNews={bookmarkedNews}
+                handleDelete={handleDeleteBookmark}
+              />
+            }
           />
         </Routes>
 

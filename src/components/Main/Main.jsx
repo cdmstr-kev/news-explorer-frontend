@@ -16,10 +16,6 @@ export const Main = ({
   articlesToShow,
   setArticlesToShow,
 }) => {
-  console.log("bookmarkedNews:", bookmarkedNews);
-  console.log("Type:", typeof bookmarkedNews);
-  console.log("Is array?", Array.isArray(bookmarkedNews));
-
   const displayedArticles = newsArray.slice(0, articlesToShow);
 
   const handleShowMore = () => {
@@ -60,14 +56,12 @@ export const Main = ({
 
             <ul className={"main__card-list"}>
               {displayedArticles?.slice(0, articlesToShow).map((article) => {
-                const isThisArticleBookmarked = bookmarkedNews?.includes(
-                  article.url
+                const isThisArticleBookmarked = bookmarkedNews?.some(
+                  (item) => item.url === article.url
                 );
 
                 const handleToggle = () => {
-                  console.log(article.url);
-                  onCardBookmarked(article.url);
-                  console.log(bookmarkedNews);
+                  onCardBookmarked(article);
                 };
 
                 return (

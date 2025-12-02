@@ -1,7 +1,10 @@
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import "./SavedNews.css";
+import trashIcon from "../../assets/trash.png";
 
-const SavedNews = () => {
+const SavedNews = ({ bookmarkedNews, handleDelete }) => {
+  console.log(bookmarkedNews);
+
   return (
     <div className={"saved-news__container"}>
       <p className={"saved-news__articles"}>Saved articles</p>
@@ -16,9 +19,23 @@ const SavedNews = () => {
         </span>
       </p>
       <img src="" alt="" />
-      <section className={"saved-news__cardlist"}>
-        <p>The cards go in here</p>
-      </section>
+      <ul className={"saved-news__cardlist"}>
+        {bookmarkedNews.map((article) => {
+          const onhandleDelete = () => {
+            handleDelete(article);
+          };
+
+          return (
+            <NewsCard key={article.url} newsArticle={article}>
+              <button
+                onClick={onhandleDelete}
+                type={"button"}
+                className={"saved-news__trash"}
+              ></button>
+            </NewsCard>
+          );
+        })}
+      </ul>
     </div>
   );
 };
