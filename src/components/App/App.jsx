@@ -54,12 +54,9 @@ function App() {
   };
 
   const handleBookmark = (article) => {
-    // console.log(article);
     if (!isLoggedIn) return;
 
     const articleWithTag = { ...article, tag: tags };
-
-    console.log(articleWithTag);
 
     const alreadyBookmarked = bookmarkedNews.some(
       (item) => item.url === articleWithTag.url

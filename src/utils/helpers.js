@@ -5,10 +5,19 @@ export const stripHtml = (html) => {
 };
 
 export const formatDate = (date) => {
-  return new Date(date).toLocaleDateString(
-      'en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-}
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+export const getTags = (articles) => {
+  const allTags = articles.map((article) => article.tag);
+
+  const uniqueTags = [...new Set(allTags)];
+  const displayedTags = uniqueTags.slice(0, 2);
+  const otherTags = uniqueTags.length - displayedTags.length;
+
+  return { displayedTags, otherTags, uniqueTags };
+};

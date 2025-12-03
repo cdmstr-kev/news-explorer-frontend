@@ -1,20 +1,26 @@
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import "./SavedNews.css";
+import { getTags } from "../../utils/helpers.js";
 
 const SavedNews = ({ bookmarkedNews, handleDelete }) => {
-  console.log(bookmarkedNews);
+  const totalArticles = bookmarkedNews.length;
+
+  const allTags = getTags(bookmarkedNews);
+  const displayedTags = allTags.displayedTags.map((tag) => tag + ", ").join("");
+  const otherTags = allTags.otherTags;
 
   return (
     <div className={"saved-news__container"}>
       <p className={"saved-news__articles"}>Saved articles</p>
       <h1 className={"saved-news__title"}>
-        Elise, You have 5 saved
+        Elise, You have {totalArticles} saved
         <br /> articles
       </h1>
       <p className={"saved-news__subtitle"}>
         By keywords:{" "}
         <span className={"saved-news__subtitle_type_bold"}>
-          Nature, Yellowstone, and 2 other
+          {displayedTags}
+          and {otherTags} other
         </span>
       </p>
       <img src="" alt="" />
@@ -25,7 +31,6 @@ const SavedNews = ({ bookmarkedNews, handleDelete }) => {
           };
 
           const formattedTag = article.tag;
-          console.log(formattedTag);
 
           return (
             <NewsCard key={article.url} newsArticle={article}>
