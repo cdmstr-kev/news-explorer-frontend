@@ -2,7 +2,7 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation.jsx";
 import { useLocation } from "react-router-dom";
 
-const Header = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
+const Header = ({ isLoggedIn, handleSignOut, handleSignIn, onSignInClick }) => {
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
@@ -12,6 +12,7 @@ const Header = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
       <div className={"header__content"}>
         <Navigation
           handleSignIn={handleSignIn}
+          onSignInClick={onSignInClick}
           handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
         />

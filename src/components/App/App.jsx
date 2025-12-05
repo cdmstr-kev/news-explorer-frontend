@@ -9,6 +9,7 @@ import SavedNews from "../SavedNews/SavedNews.jsx";
 import * as api from "../../utils/api.js";
 // import { getTopHeadlines } from "../../utils/newsapi.js";
 import { queryNewsAPI } from "../../utils/newsapi.js";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,9 +28,30 @@ function App() {
   const [news, setNews] = useState([]);
   const [tags, setTags] = useState("Default");
 
+  const [activeModal, setActiveModal] = useState("register-modal");
+
+  const handleCloseActiveModal = () => {
+    setActiveModal("");
+  };
+
+  const handleRegistration = (newUser) => {
+    const { email, password, username } = newUser;
+
+    consle.log(email, password, username);
+  };
+
+  // const handleSignClick = () => {
+  //   setActiveModal("sign-modal");
+  // };
+
   const handleSearch = (e) => {
     e.preventDefault();
-    setTags(searchQuery);
+    if (searchQuery === "") {
+      setSearchQuery("Default");
+    } else {
+      setTags(searchQuery);
+    }
+
     setArticlesToShow(3);
 
     queryNewsAPI(searchQuery)
@@ -51,6 +73,18 @@ function App() {
   const handleSignIn = (e) => {
     e.preventDefault();
     setIsLoggedIn(true);
+  };
+
+  const handleSignInClick = () => {
+    console.log("Sign in clicked");
+    setActiveModal("LogIn-modal");
+    console.log(activeModal);
+  };
+
+  const handleRegisterClick = () => {
+    console.log("Sign in clicked");
+    setActiveModal("register-modal");
+    console.log(activeModal);
   };
 
   const handleBookmark = (article) => {
@@ -104,6 +138,7 @@ function App() {
       <div className="app__content">
         <Header
           handleSignIn={handleSignIn}
+          onSignInClick={handleSignInClick}
           handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
         />
@@ -138,6 +173,16 @@ function App() {
         </Routes>
 
         <Footer />
+        <RegisterModal
+          isOpen={activeModal === "register-modal"}
+          handleCloseActiveModal={handleCloseActiveModal}
+          handleOpenLogin={handleSignInClick}
+          handleSignIn={handleSignIn}
+          OnUserRegister={handleRegistration}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          activeModal={activeModal}
+        />
       </div>
     </div>
   );

@@ -4,7 +4,12 @@ import "./Navigation.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const Navigation = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
+const Navigation = ({
+  isLoggedIn,
+  handleSignOut,
+  handleSignIn,
+  onSignInClick,
+}) => {
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
@@ -49,7 +54,7 @@ const Navigation = ({ isLoggedIn, handleSignOut, handleSignIn }) => {
           />
         </button>
       ) : (
-        <button onClick={handleSignIn} type="button" className="nav__btn">
+        <button onClick={onSignInClick} type="button" className="nav__btn">
           Sign in
         </button>
       )}
