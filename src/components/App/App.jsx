@@ -32,7 +32,7 @@ function App() {
   const [news, setNews] = useState([]);
   const [tags, setTags] = useState("Default");
 
-  const [activeModal, setActiveModal] = useState("signin-modal");
+  const [activeModal, setActiveModal] = useState("");
 
   const handleCloseActiveModal = () => {
     setActiveModal("");
