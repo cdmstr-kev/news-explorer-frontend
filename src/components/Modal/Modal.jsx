@@ -13,8 +13,6 @@ export const Modal = ({
 }) => {
   useModalClose(isOpen, onClose);
 
-  console.log("isOpen in Modal:", isOpen);
-
   return (
     <div
       className={`modal ${isOpen ? "modal_is-open" : ""} modal_type_${name}`}

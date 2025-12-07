@@ -1,11 +1,10 @@
-.register__error {
+.login__error {
   font-family: roboto, Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
   color: red;
   position: absolute;
-  top: 307px;
+  top: 138px;
   padding: 0;
-  align-self: center;
 }

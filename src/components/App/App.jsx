@@ -6,10 +6,14 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
-import * as api from "../../utils/api.js";
-// import { getTopHeadlines } from "../../utils/newsapi.js";
 import { queryNewsAPI } from "../../utils/newsapi.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
+import {
+  checkUserInStorage,
+  getUsersFromStorage,
+  saveUserToStorage,
+} from "../../utils/helpers.js";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,21 +32,19 @@ function App() {
   const [news, setNews] = useState([]);
   const [tags, setTags] = useState("Default");
 
-  const [activeModal, setActiveModal] = useState("register-modal");
+  const [activeModal, setActiveModal] = useState("signin-modal");
 
   const handleCloseActiveModal = () => {
     setActiveModal("");
   };
 
   const handleRegistration = (newUser) => {
-    const { email, password, username } = newUser;
-
-    consle.log(email, password, username);
+    saveUserToStorage(newUser);
   };
 
-  // const handleSignClick = () => {
-  //   setActiveModal("sign-modal");
-  // };
+  const handleOpenRegister = () => {
+    setActiveModal("register-modal");
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -70,20 +72,21 @@ function App() {
     setIsLoggedIn(false);
   };
 
-  const handleSignIn = (e) => {
-    e.preventDefault();
+  const handleSignIn = (user) => {
+    const { email } = user;
+    console.log(email);
+
+    if (!checkUserInStorage(user.email)) {
+      return console.error("User doesn't exist in storage: ", user);
+    }
+
     setIsLoggedIn(true);
+    handleCloseActiveModal();
   };
 
-  const handleSignInClick = () => {
+  const handleOpenSignIn = () => {
     console.log("Sign in clicked");
-    setActiveModal("LogIn-modal");
-    console.log(activeModal);
-  };
-
-  const handleRegisterClick = () => {
-    console.log("Sign in clicked");
-    setActiveModal("register-modal");
+    setActiveModal("signin-modal");
     console.log(activeModal);
   };
 
@@ -138,7 +141,7 @@ function App() {
       <div className="app__content">
         <Header
           handleSignIn={handleSignIn}
-          onSignInClick={handleSignInClick}
+          onSignInClick={handleOpenSignIn}
           handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
         />
@@ -176,12 +179,18 @@ function App() {
         <RegisterModal
           isOpen={activeModal === "register-modal"}
           handleCloseActiveModal={handleCloseActiveModal}
-          handleOpenLogin={handleSignInClick}
+          handleOpenSignIn={handleOpenSignIn}
           handleSignIn={handleSignIn}
-          OnUserRegister={handleRegistration}
-          isLoading={isLoading}
+          onUserRegister={handleRegistration}
           setIsLoading={setIsLoading}
           activeModal={activeModal}
+        />
+        <LoginModal
+          isOpen={activeModal === "signin-modal"}
+          handleCloseActiveModal={handleCloseActiveModal}
+          handleSubmit={handleSignIn}
+          isLoading={isLoading}
+          handleOpenRegister={handleOpenRegister}
         />
       </div>
     </div>

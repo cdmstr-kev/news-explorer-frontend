@@ -30,10 +30,10 @@
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 1);
   border-radius: 16px;
-  padding: 0 36px;
   box-sizing: border-box;
+  padding: 0 36px;
   width: 100%;
-  max-width: 380px;
+  max-width: 430px;
   position: relative;
 }
 
@@ -103,6 +103,8 @@
   color: #000000;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .modal__input:focus {
@@ -118,6 +120,7 @@
   text-align: center;
   vertical-align: middle;
   width: 100%;
+  /*height: 64px;*/
   max-width: 630px;
   background-color: #2F71E5;
   border: none;
@@ -131,6 +134,18 @@
 /*TODO review the button color on hover*/
 .modal__submit-btn:hover {
   background-color: #2660C2;
+}
+
+.modal__submit-btn_disabled {
+  background-color: #E6E8EB;
+  cursor: not-allowed;
+  color: #B6BCBF;
+}
+
+.modal__submit-btn_disabled:hover {
+  background-color: #E6E8EB;
+  cursor: not-allowed;
+  color: #B6BCBF;
 }
 
 .modal__switch {
@@ -152,3 +167,5 @@
 .modal__switch_color-blue {
   color: #2F71E5;
 }
+
+

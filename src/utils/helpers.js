@@ -21,3 +21,18 @@ export const getTags = (articles) => {
 
   return { displayedTags, otherTags, uniqueTags };
 };
+
+export const getUsersFromStorage = () => {
+  return JSON.parse(localStorage.getItem("users") || "[]");
+};
+
+export const checkUserInStorage = (email) => {
+  return getUsersFromStorage().some((user) => user.email === email);
+};
+
+export const saveUserToStorage = (user) => {
+  return localStorage.setItem(
+    "users",
+    JSON.stringify([...getUsersFromStorage(), user])
+  );
+};

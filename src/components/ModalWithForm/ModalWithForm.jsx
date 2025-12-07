@@ -9,10 +9,8 @@ export default function ModalWithForm({
   isOpen,
   handleCloseActiveModal,
   onSubmit,
-  isLoading,
-  handleOpenLogin,
-  activeModal,
   footerButton,
+  isFormValid,
 }) {
   return (
     <div>
@@ -21,7 +19,11 @@ export default function ModalWithForm({
         <form onSubmit={onSubmit} className={"modal__form"}>
           {children}
 
-          <button type={"submit"} className={"modal__submit-btn"}>
+          <button
+            disabled={!isFormValid}
+            type={"submit"}
+            className={`modal__submit-btn ${!isFormValid && "modal__submit-btn_disabled"}`}
+          >
             {buttonText}
           </button>
           {footerButton}

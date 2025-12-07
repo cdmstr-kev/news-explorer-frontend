@@ -1,15 +1,14 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 import "./RegisterModal.css";
+import { checkUserInStorage } from "../../utils/helpers.js";
 
 const RegisterModal = ({
   isOpen,
   handleCloseActiveModal,
   onUserRegister,
-  handleSignIn,
-  isLoading,
   setIsLoading,
-  handleOpenLogin,
+  handleOpenSignIn,
 }) => {
   const defaultValues = {
     email: "",
@@ -17,20 +16,29 @@ const RegisterModal = ({
     username: "",
   };
 
+  const { values, handleChange, resetForm, errors, setErrors, isFormValid } =
+    useForm(defaultValues);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    console.log(values);
-    onUserRegister(values);
-    resetForm();
-    setIsLoading(false);
-  };
 
-  const { values, handleChange, resetForm } = useForm(defaultValues);
+    const usernameExists = checkUserInStorage(values.email);
+
+    if (usernameExists && values.email !== "") {
+      setErrors({ ...errors, email: "Email already exists" });
+    } else {
+      setIsLoading(true);
+      onUserRegister(values);
+      resetForm();
+      setIsLoading(false);
+      handleCloseActiveModal();
+    }
+  };
 
   return (
     <div>
       <ModalWithForm
+        isFormValid={isFormValid}
         isOpen={isOpen}
         title={"Sign Up"}
         onSubmit={handleSubmit}
@@ -38,15 +46,13 @@ const RegisterModal = ({
         buttonText={"Sign Up"}
         handleCloseActiveModal={handleCloseActiveModal}
         footerButton={
-          !isLoading && (
-            <button
-              type="button"
-              className="modal__switch"
-              onClick={handleOpenLogin}
-            >
-              or <span className={"modal__switch_color-blue"}>Sign in</span>
-            </button>
-          )
+          <button
+            type="button"
+            className="modal__switch"
+            onClick={handleOpenSignIn}
+          >
+            or <span className={"modal__switch_color-blue"}>Sign in</span>
+          </button>
         }
       >
         <fieldset className="modal__fieldset">
@@ -89,13 +95,16 @@ const RegisterModal = ({
               className="modal__input"
               type="text"
               name="username"
-              value={values.name}
+              value={values.username}
               onChange={handleChange}
               placeholder="Enter your username"
               required
             />
           </label>
         </fieldset>
+        {errors.email && (
+          <span className={"register__error"}>{errors.email}</span>
+        )}
       </ModalWithForm>
     </div>
   );
