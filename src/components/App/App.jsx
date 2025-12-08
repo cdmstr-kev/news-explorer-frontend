@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+// TODO might need to protect the saved news page
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
@@ -15,6 +17,7 @@ import {
   getUsersFromStorage,
   saveUserToStorage,
 } from "../../utils/helpers.js";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,10 +30,14 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return JSON.parse(localStorage.getItem("isLoggedIn") || "false");
   });
+  const [currentUser, setCurrentUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("currentUser") || null);
+  });
   const [bookmarkedNews, setBookmarkedNews] = useState(() => {
     const savedNews = localStorage.getItem("bookmarkedNews");
     return savedNews ? JSON.parse(savedNews) : [];
   });
+  const navigate = useNavigate();
 
   const handleCloseActiveModal = () => {
     setLoginErrors("");
@@ -63,6 +70,7 @@ function App() {
 
   const handleSignOut = (e) => {
     setIsLoggedIn(false);
+    navigate("/");
   };
 
   const handleSignIn = (user) => {
@@ -70,6 +78,7 @@ function App() {
     const { email, password } = user;
 
     const users = getUsersFromStorage();
+    const getUser = users.find((user) => user.email === email);
 
     const userExists = validateUserCredentials(email, password);
 
@@ -80,6 +89,7 @@ function App() {
     }
 
     setLoginErrors("");
+    setCurrentUser(getUser);
     setIsLoggedIn(true);
     setIsLoading(false);
     handleCloseActiveModal();
@@ -93,17 +103,18 @@ function App() {
     if (!isLoggedIn) return;
 
     const articleWithTag = { ...article, tag: tags };
+    const updatedArticle = { ...articleWithTag, user: currentUser.email };
 
     const alreadyBookmarked = bookmarkedNews.some(
-      (item) => item.url === articleWithTag.url
+      (item) => item.url === updatedArticle.url
     );
 
     if (alreadyBookmarked) {
       setBookmarkedNews(
-        bookmarkedNews.filter((item) => item.url !== articleWithTag.url)
+        bookmarkedNews.filter((item) => item.url !== updatedArticle.url)
       );
     } else {
-      setBookmarkedNews([...bookmarkedNews, articleWithTag]);
+      setBookmarkedNews([...bookmarkedNews, updatedArticle]);
     }
   };
 
@@ -120,6 +131,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  }, [currentUser]);
 
   return (
     <div className="app">
@@ -153,9 +168,9 @@ function App() {
             path={"/saved-news"}
             element={
               <SavedNews
-                searchQuery={searchQuery}
                 bookmarkedNews={bookmarkedNews}
                 handleDelete={handleDeleteBookmark}
+                currentUser={currentUser}
               />
             }
           />
@@ -170,6 +185,7 @@ function App() {
           onUserRegister={handleRegistration}
           setIsLoading={setIsLoading}
           activeModal={activeModal}
+          setActiveModal={setActiveModal}
         />
         <LoginModal
           isOpen={activeModal === "signin-modal"}
@@ -177,6 +193,13 @@ function App() {
           handleSubmit={handleSignIn}
           handleOpenRegister={handleOpenRegister}
           loginError={loginErrors}
+        />
+        <ConfirmationModal
+          isOpen={activeModal === "confirmation-modal"}
+          handleCloseActiveModal={handleCloseActiveModal}
+          handleOpenSignIn={handleOpenSignIn}
+          message={"Registration successfully completed!"}
+          buttonText={"Sign in"}
         />
       </div>
     </div>

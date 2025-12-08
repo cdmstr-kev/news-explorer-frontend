@@ -9,6 +9,7 @@ const RegisterModal = ({
   onUserRegister,
   setIsLoading,
   handleOpenSignIn,
+  setActiveModal,
 }) => {
   const defaultValues = {
     email: "",
@@ -31,7 +32,7 @@ const RegisterModal = ({
       onUserRegister(values);
       resetForm();
       setIsLoading(false);
-      handleCloseActiveModal();
+      setActiveModal("confirmation-modal");
     }
   };
 

@@ -1,0 +1,20 @@
+.confirmation-modal__title {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+
+  margin: 49px 0 14px 0;
+}
+/*TODO check on the font here. it needs to be inter*/
+.confirmation-modal__btn {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+
+  margin-bottom: 51px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #2F71E5;
+}
