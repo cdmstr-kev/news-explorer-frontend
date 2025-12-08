@@ -11,7 +11,11 @@ const SearchForm = ({ searchQuery, setSearchQuery, onSubmit }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search News..."
         />
-        <button className={"search-form__btn"} type="submit">
+        <button
+          disabled={!searchQuery}
+          className={`search-form__btn ${!searchQuery && "search-form__btn_disabled"}`}
+          type="submit"
+        >
           Search
         </button>
       </form>

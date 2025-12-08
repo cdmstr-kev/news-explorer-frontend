@@ -28,7 +28,7 @@ const LoginModal = ({
     if (!isOpen) {
       resetForm();
     }
-  });
+  }, [isOpen]);
 
   return (
     <div>

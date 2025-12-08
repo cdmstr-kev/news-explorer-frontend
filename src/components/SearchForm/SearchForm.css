@@ -18,7 +18,7 @@
   padding-left: 24px;
 }
 
-.search-form button {
+.search-form__btn {
   font-family: 'roboto', Georgia, 'Times New Roman', serif;
   font-size: 18px;
   font-weight: 500;
@@ -29,13 +29,26 @@
   top: 0;
   bottom: 0;
   color: #fff;
-  background: rgba(47, 113, 229, 1);
+  background-color: #2F71E5;
   box-shadow: 0 5px 15px 0 rgba(14, 26, 57, 0.2);
   border: none;
   border-radius: 100px;
   cursor: pointer;
 }
 
+.search-form__btn:hover {
+  background-color: #347EFF;
+}
+
+.search-form__btn:active {
+  background-color: #2A65CC;
+}
 .search-form input::placeholder {
   color: #B6BCBF;
 }
+
+.search-form__btn_disabled:hover {
+  cursor: not-allowed;
+  background-color: rgba(47, 113, 229, 1)
+}
+

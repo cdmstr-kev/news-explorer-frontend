@@ -47,11 +47,7 @@ function App() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery === "") {
-      setSearchQuery("Default");
-    } else {
-      setTags(searchQuery);
-    }
+    setTags(searchQuery);
 
     setArticlesToShow(3);
 

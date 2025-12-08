@@ -39,7 +39,7 @@ const SavedNews = ({ bookmarkedNews, handleDelete }) => {
                 type={"button"}
                 className={"saved-news__trash"}
               ></button>
-              <h2 className={"saved-news__tag"}>{formattedTag}</h2>
+              <h2 className={"saved-news__tag"}>{formattedTag}</h2>)
             </NewsCard>
           );
         })}
