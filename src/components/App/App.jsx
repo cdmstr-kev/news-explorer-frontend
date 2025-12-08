@@ -135,6 +135,7 @@ function App() {
             path="/"
             element={
               <Main
+                tags={tags}
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 onSubmit={handleSearch}

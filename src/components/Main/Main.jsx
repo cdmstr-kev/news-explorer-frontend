@@ -15,6 +15,7 @@ export const Main = ({
   isLoggedIn,
   articlesToShow,
   setArticlesToShow,
+  tags,
 }) => {
   const displayedArticles = newsArray.slice(0, articlesToShow);
 
@@ -40,7 +41,7 @@ export const Main = ({
           onSubmit={onSubmit}
         />
       </section>
-      {searchQuery && (
+      {tags && tags !== "Default" && (
         <section className={"main__content"}>
           {displayedArticles?.length === 0 ? (
             <div className={"main__not-found-container"}>
