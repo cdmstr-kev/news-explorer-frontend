@@ -1,13 +1,14 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 import "./LoginModal.css";
+import { useEffect } from "react";
 
 const LoginModal = ({
   isOpen,
   handleCloseActiveModal,
   handleSubmit,
-  isLoading,
   handleOpenRegister,
+  loginError,
 }) => {
   const defaultValues = {
     email: "",
@@ -21,8 +22,13 @@ const LoginModal = ({
     e.preventDefault();
 
     handleSubmit(values);
-    resetForm();
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      resetForm();
+    }
+  });
 
   return (
     <div>
@@ -34,15 +40,13 @@ const LoginModal = ({
         onSubmit={onSubmit}
         buttonText={"Sign In"}
         footerButton={
-          !isLoading && (
-            <button
-              type="button"
-              className="modal__switch"
-              onClick={handleOpenRegister}
-            >
-              or <span className={"modal__switch_color-blue"}>Sign up</span>
-            </button>
-          )
+          <button
+            type="button"
+            className="modal__switch"
+            onClick={handleOpenRegister}
+          >
+            or <span className={"modal__switch_color-blue"}>Sign up</span>
+          </button>
         }
       >
         <fieldset className="modal__fieldset">
@@ -59,7 +63,9 @@ const LoginModal = ({
             />
           </label>
         </fieldset>
-        {errors.email && <span className={"login__error"}>{errors.email}</span>}
+        {(errors.email || loginError) && (
+          <span className={"login__error"}>{errors.email || loginError}</span>
+        )}
 
         <fieldset className="modal__fieldset">
           <label className={"modal__label"}>

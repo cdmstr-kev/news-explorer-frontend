@@ -40,60 +40,64 @@ export const Main = ({
           onSubmit={onSubmit}
         />
       </section>
-      <section className={"main__content"}>
-        {displayedArticles?.length === 0 ? (
-          <div className={"main__not-found-container"}>
-            <img className={"main__not-found"} src={notFound} alt="" />
-            <h2 className={"main__not-found-title"}>Nothing found</h2>
-            <p className={"main__not-found-subtitle"}>
-              Sorry, but nothing matched
-              <br /> your search terms.
-            </p>
-          </div>
-        ) : (
-          <>
-            <h1 className={"main__content-title"}>Search results</h1>
+      {searchQuery && (
+        <section className={"main__content"}>
+          {displayedArticles?.length === 0 ? (
+            <div className={"main__not-found-container"}>
+              <img className={"main__not-found"} src={notFound} alt="" />
+              <h2 className={"main__not-found-title"}>Nothing found</h2>
+              <p className={"main__not-found-subtitle"}>
+                Sorry, but nothing matched
+                <br /> your search terms.
+              </p>
+            </div>
+          ) : (
+            <>
+              <h1 className={"main__content-title"}>Search results</h1>
 
-            <ul className={"main__card-list"}>
-              {displayedArticles?.slice(0, articlesToShow).map((article) => {
-                const isThisArticleBookmarked = bookmarkedNews?.some(
-                  (item) => item.url === article.url
-                );
+              <ul className={"main__card-list"}>
+                {displayedArticles?.slice(0, articlesToShow).map((article) => {
+                  const isThisArticleBookmarked = bookmarkedNews?.some(
+                    (item) => item.url === article.url
+                  );
 
-                const handleToggle = () => {
-                  onCardBookmarked(article);
-                };
+                  const handleToggle = () => {
+                    onCardBookmarked(article);
+                  };
 
-                return (
-                  <NewsCard key={article.url} newsArticle={article}>
-                    <div className={"card__actions"}>
-                      <button
-                        onClick={handleToggle}
-                        className={`card__bookmark ${isThisArticleBookmarked ? "card__bookmark_type_active" : ""}`}
-                      ></button>
-                      {!isLoggedIn && (
-                        <span className={"card__alert card__alert_type_active"}>
-                          Sign in to save articles
-                        </span>
-                      )}
-                    </div>
-                  </NewsCard>
-                );
-              })}
-            </ul>
-          </>
-        )}
+                  return (
+                    <NewsCard key={article.url} newsArticle={article}>
+                      <div className={"card__actions"}>
+                        <button
+                          onClick={handleToggle}
+                          className={`card__bookmark ${isThisArticleBookmarked ? "card__bookmark_type_active" : ""}`}
+                        ></button>
+                        {!isLoggedIn && (
+                          <span
+                            className={"card__alert card__alert_type_active"}
+                          >
+                            Sign in to save articles
+                          </span>
+                        )}
+                      </div>
+                    </NewsCard>
+                  );
+                })}
+              </ul>
+            </>
+          )}
 
-        {articlesToShow < newsArray.length && (
-          <button
-            type={"button"}
-            className={"main__show-more"}
-            onClick={() => handleShowMore()}
-          >
-            Show more
-          </button>
-        )}
-      </section>
+          {articlesToShow < newsArray.length && (
+            <button
+              type={"button"}
+              className={"main__show-more"}
+              onClick={() => handleShowMore()}
+            >
+              Show more
+            </button>
+          )}
+        </section>
+      )}
 
       <About />
     </main>

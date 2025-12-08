@@ -10,6 +10,7 @@ import { queryNewsAPI } from "../../utils/newsapi.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import {
+  validateUserCredentials,
   checkUserInStorage,
   getUsersFromStorage,
   saveUserToStorage,
@@ -17,24 +18,22 @@ import {
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [articlesToShow, setArticlesToShow] = useState(3);
+  const [news, setNews] = useState([]);
+  const [tags, setTags] = useState("Default");
+  const [activeModal, setActiveModal] = useState("");
+  const [loginErrors, setLoginErrors] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return JSON.parse(localStorage.getItem("isLoggedIn") || "false");
   });
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [articlesToShow, setArticlesToShow] = useState(3);
-
   const [bookmarkedNews, setBookmarkedNews] = useState(() => {
     const savedNews = localStorage.getItem("bookmarkedNews");
     return savedNews ? JSON.parse(savedNews) : [];
   });
 
-  const [news, setNews] = useState([]);
-  const [tags, setTags] = useState("Default");
-
-  const [activeModal, setActiveModal] = useState("");
-
   const handleCloseActiveModal = () => {
+    setLoginErrors("");
     setActiveModal("");
   };
 
@@ -62,10 +61,8 @@ function App() {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to fetch clothing items:", err);
+        console.error("Failed to fetch news:", err);
       });
-
-    setSearchQuery("");
   };
 
   const handleSignOut = (e) => {
@@ -73,21 +70,27 @@ function App() {
   };
 
   const handleSignIn = (user) => {
-    const { email } = user;
-    console.log(email);
+    setIsLoading(true);
+    const { email, password } = user;
 
-    if (!checkUserInStorage(user.email)) {
+    const users = getUsersFromStorage();
+
+    const userExists = validateUserCredentials(email, password);
+
+    if (!userExists) {
+      setLoginErrors("Invalid credentials. Please try again.");
+      setIsLoading(true);
       return console.error("User doesn't exist in storage: ", user);
     }
 
+    setLoginErrors("");
     setIsLoggedIn(true);
+    setIsLoading(false);
     handleCloseActiveModal();
   };
 
   const handleOpenSignIn = () => {
-    console.log("Sign in clicked");
     setActiveModal("signin-modal");
-    console.log(activeModal);
   };
 
   const handleBookmark = (article) => {
@@ -121,20 +124,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setTags("Default");
-
-    queryNewsAPI(searchQuery)
-      .then((data) => {
-        setNews(data.articles);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch clothing items:", err);
-      });
-  }, []);
 
   return (
     <div className="app">
@@ -189,8 +178,8 @@ function App() {
           isOpen={activeModal === "signin-modal"}
           handleCloseActiveModal={handleCloseActiveModal}
           handleSubmit={handleSignIn}
-          isLoading={isLoading}
           handleOpenRegister={handleOpenRegister}
+          loginError={loginErrors}
         />
       </div>
     </div>

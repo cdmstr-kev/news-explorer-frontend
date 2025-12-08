@@ -30,6 +30,13 @@ export const checkUserInStorage = (email) => {
   return getUsersFromStorage().some((user) => user.email === email);
 };
 
+export const validateUserCredentials = (email, password) => {
+  const users = getUsersFromStorage();
+  return users.find(
+    (user) => user.email === email && user.password === password
+  );
+};
+
 export const saveUserToStorage = (user) => {
   return localStorage.setItem(
     "users",

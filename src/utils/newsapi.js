@@ -11,22 +11,8 @@ const API_OPTIONS = {
   },
 };
 
-export const queryNewsAPI = async (query) => {
-  try {
-    const endpoint = query
-      ? `${baseUrl}/everything?q=${encodeURIComponent(query)}`
-      : `${baseUrl}/top-headlines?country=us`;
+export const queryNewsAPI = (query) => {
+  const endpoint = `${baseUrl}/everything?q=${encodeURIComponent(query)}`;
 
-    const response = await fetch(endpoint, API_OPTIONS);
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch news");
-    }
-
-    const news = await response.json();
-
-    return news;
-  } catch (err) {
-    console.error(err);
-  }
+  return fetch(endpoint, API_OPTIONS).then(handleApiResponse);
 };
