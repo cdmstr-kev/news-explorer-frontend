@@ -3,7 +3,13 @@ import { stripHtml } from "../../utils/helpers.js";
 import { formatDate } from "../../utils/helpers.js";
 import placeholder from "../../assets/placeholder.svg";
 
-const NewsCard = ({ children, newsArticle }) => {
+const NewsCard = ({
+  newsArticle,
+  children,
+  isBookmarked,
+  onBookmarkClick,
+  isLoggedIn,
+}) => {
   const publishedDate = formatDate(newsArticle.publishedAt);
   const newsContent = stripHtml(newsArticle.description);
 
@@ -22,11 +28,7 @@ const NewsCard = ({ children, newsArticle }) => {
         <p className={"card__date"}>{publishedDate}</p>
         <h1 className={"card__title"}>
           {" "}
-          <a
-            className={"main__news-url"}
-            target={"_blank"}
-            href={newsArticle.url}
-          >
+          <a className={"card__link"} target={"_blank"} href={newsArticle.url}>
             {newsArticle.title}
           </a>
         </h1>
@@ -37,6 +39,17 @@ const NewsCard = ({ children, newsArticle }) => {
         )}
         <p className={"card__subtitle"}>{newsArticle.source.name}</p>
         {children}
+      </div>
+      <div className={"card__actions"}>
+        <button
+          onClick={onBookmarkClick}
+          className={`card__bookmark ${isBookmarked ? "card__bookmark_type_active" : ""}`}
+        ></button>
+        {!isLoggedIn && (
+          <span className={"card__alert card__alert_type_active"}>
+            Sign in to save articles
+          </span>
+        )}
       </div>
     </li>
   );

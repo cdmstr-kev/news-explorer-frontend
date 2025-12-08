@@ -67,21 +67,13 @@ export const Main = ({
                   };
 
                   return (
-                    <NewsCard key={article.url} newsArticle={article}>
-                      <div className={"card__actions"}>
-                        <button
-                          onClick={handleToggle}
-                          className={`card__bookmark ${isThisArticleBookmarked ? "card__bookmark_type_active" : ""}`}
-                        ></button>
-                        {!isLoggedIn && (
-                          <span
-                            className={"card__alert card__alert_type_active"}
-                          >
-                            Sign in to save articles
-                          </span>
-                        )}
-                      </div>
-                    </NewsCard>
+                    <NewsCard
+                      key={article.url}
+                      newsArticle={article}
+                      isBookmarked={isThisArticleBookmarked}
+                      onBookmarkClick={handleToggle}
+                      isLoggedIn={isLoggedIn}
+                    />
                   );
                 })}
               </ul>
