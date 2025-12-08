@@ -72,7 +72,7 @@
 .card__bookmark {
   width: 40px;
   height: 40px;
-  background-color: white;
+  background-color: #FFFFFF;
   position: absolute;
   top: 24px;
   right: 24px;
@@ -86,6 +86,10 @@
 
 .card__bookmark:hover {
   background-image: url("../../assets/bookmark-hover.png");
+}
+
+.card__bookmark:active {
+  background-image: url("../../assets/bookmark-active.png");
 }
 
 .card__bookmark_type_active {
