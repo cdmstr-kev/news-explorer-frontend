@@ -8,7 +8,7 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
-import { queryNewsAPI } from "../../utils/newsapi.js";
+import { queryNewsApi } from "../../utils/newsapi.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import {
@@ -67,8 +67,9 @@ function App() {
 
     setArticlesToShow(3);
 
-    queryNewsAPI(searchQuery)
+    queryNewsApi(searchQuery)
       .then((data) => {
+        console.log("Successfully fetched news:", data);
         setNews(data.articles);
         setIsLoading(false);
       })
