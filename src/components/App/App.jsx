@@ -29,6 +29,7 @@ function App() {
   const [searchError, setSearchError] = useState("");
   const [activeModal, setActiveModal] = useState("");
   const [loginErrors, setLoginErrors] = useState("");
+  const [apiError, setApiError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return JSON.parse(localStorage.getItem("isLoggedIn") || "false");
   });
@@ -63,18 +64,22 @@ function App() {
     }
 
     setSearchError("");
+    setApiError("");
+    setIsLoading(true);
     setTags(searchQuery);
-
     setArticlesToShow(3);
 
     queryNewsApi(searchQuery)
       .then((data) => {
-        console.log("Successfully fetched news:", data);
         setNews(data.articles);
         setIsLoading(false);
       })
       .catch((err) => {
         console.error("Failed to fetch news:", err);
+        setApiError(
+          "Sorry, something went wrong during the request. Please try again later."
+        );
+        setIsLoading(false);
       });
   };
 
@@ -172,6 +177,7 @@ function App() {
                 setArticlesToShow={setArticlesToShow}
                 articlesToShow={articlesToShow}
                 searchError={searchError}
+                apiError={apiError}
               />
             }
           />

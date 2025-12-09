@@ -4,6 +4,7 @@ import About from "../About/About.jsx";
 import hero from "../../assets/hero.png";
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import notFound from "../../assets/not-found.svg";
+import Preloader from "../Preloader/Preloader.jsx";
 
 export const Main = ({
   searchQuery,
@@ -17,6 +18,8 @@ export const Main = ({
   setArticlesToShow,
   tags,
   searchError,
+  apiError,
+  isLoading,
 }) => {
   const displayedArticles = newsArray.slice(0, articlesToShow);
 
@@ -43,55 +46,65 @@ export const Main = ({
           searchError={searchError}
         />
       </section>
-      {tags && tags !== "Default" && (
-        <section className={"main__content"}>
-          {displayedArticles?.length === 0 ? (
-            <div className={"main__not-found-container"}>
-              <img className={"main__not-found"} src={notFound} alt="" />
-              <h2 className={"main__not-found-title"}>Nothing found</h2>
-              <p className={"main__not-found-subtitle"}>
-                Sorry, but nothing matched
-                <br /> your search terms.
-              </p>
-            </div>
-          ) : (
-            <>
-              <h1 className={"main__content-title"}>Search results</h1>
+      {isLoading ? (
+        <Preloader />
+      ) : apiError ? (
+        <p className={"main__error"}>{apiError}</p>
+      ) : (
+        /*Todo Review if !== Default this is still needed and if this section can be refactored to be simpler*/
+        tags &&
+        tags !== "Default" && (
+          <section className={"main__content"}>
+            {displayedArticles?.length === 0 ? (
+              <div className={"main__not-found-container"}>
+                <img className={"main__not-found"} src={notFound} alt="" />
+                <h2 className={"main__not-found-title"}>Nothing found</h2>
+                <p className={"main__not-found-subtitle"}>
+                  Sorry, but nothing matched
+                  <br /> your search terms.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h1 className={"main__content-title"}>Search results</h1>
 
-              <ul className={"main__card-list"}>
-                {displayedArticles?.slice(0, articlesToShow).map((article) => {
-                  const isThisArticleBookmarked = bookmarkedNews?.some(
-                    (item) => item.url === article.url
-                  );
+                <ul className={"main__card-list"}>
+                  {displayedArticles
+                    ?.slice(0, articlesToShow)
+                    .map((article) => {
+                      const isThisArticleBookmarked = bookmarkedNews?.some(
+                        (item) => item.url === article.url
+                      );
 
-                  const handleToggle = () => {
-                    onCardBookmarked(article);
-                  };
+                      const handleToggle = () => {
+                        onCardBookmarked(article);
+                      };
 
-                  return (
-                    <NewsCard
-                      key={article.url}
-                      newsArticle={article}
-                      isBookmarked={isThisArticleBookmarked}
-                      onBookmarkClick={handleToggle}
-                      isLoggedIn={isLoggedIn}
-                    />
-                  );
-                })}
-              </ul>
-            </>
-          )}
+                      return (
+                        <NewsCard
+                          key={article.url}
+                          newsArticle={article}
+                          isBookmarked={isThisArticleBookmarked}
+                          onBookmarkClick={handleToggle}
+                          isLoggedIn={isLoggedIn}
+                        />
+                      );
+                    })}
+                </ul>
+              </>
+            )}
 
-          {articlesToShow < newsArray.length && (
-            <button
-              type={"button"}
-              className={"main__show-more"}
-              onClick={() => handleShowMore()}
-            >
-              Show more
-            </button>
-          )}
-        </section>
+            {articlesToShow < newsArray.length && (
+              <button
+                type={"button"}
+                className={"main__show-more"}
+                onClick={() => handleShowMore()}
+              >
+                Show more
+              </button>
+            )}
+          </section>
+        )
       )}
 
       <About />

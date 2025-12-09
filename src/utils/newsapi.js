@@ -17,8 +17,7 @@ export const queryNewsApi = (query) => {
     return date.toISOString().split("T")[0];
   };
 
-  const endpoint = `${newsApiBaseUrl}?q=${encodeURIComponent(query)}&from=${formatDate(sevenDaysAgo)}&t
-  o=${formatDate(today)}&pageSize=100&apiKey=${API_KEY}`;
+  const endpoint = `${newsApiBaseUrl}?q=${encodeURIComponent(query)}&from=${formatDate(sevenDaysAgo)}&to=${formatDate(today)}&pageSize=100&apiKey=${API_KEY}`;
 
   return fetch(endpoint).then(handleApiResponse);
 };

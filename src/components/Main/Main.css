@@ -116,3 +116,13 @@
   text-align: center;
   margin: 0;
 }
+
+.main__error {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  color: red;
+  line-height: 24px;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  margin: 10px;
+}
