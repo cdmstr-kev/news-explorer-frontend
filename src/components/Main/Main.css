@@ -95,6 +95,7 @@
 .main__not-found {
   width: 82px;
   height: 82px;
+  height: 100%;
   color: red;
 }
 
