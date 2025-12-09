@@ -1,4 +1,8 @@
-const baseUrl = import.meta.env.VITE_API_BASE_URL;
+const newsApiBaseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://nomoreparties.co/news/v2/everything"
+    : "https://newsapi.org/v2/everything";
+
 const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 
 const handleApiResponse = (res) => {
@@ -9,9 +13,9 @@ const handleApiResponse = (res) => {
 };
 
 const makeRequest = (endpoint, options = {}) => {
-  const url = `${baseUrl}${endpoint}`;
+  const url = `${newsApiBaseUrl}${endpoint}`;
 
-  return fetch(`${baseUrl}${endpoint}`, options).then(handleApiResponse);
+  return fetch(`${newsApiBaseUrl}${endpoint}`, options).then(handleApiResponse);
 };
 
 function getNews() {

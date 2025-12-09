@@ -16,6 +16,7 @@ export const Main = ({
   articlesToShow,
   setArticlesToShow,
   tags,
+  searchError,
 }) => {
   const displayedArticles = newsArray.slice(0, articlesToShow);
 
@@ -39,6 +40,7 @@ export const Main = ({
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           onSubmit={onSubmit}
+          searchError={searchError}
         />
       </section>
       {tags && tags !== "Default" && (

@@ -18,6 +18,7 @@ import {
   saveUserToStorage,
 } from "../../utils/helpers.js";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
+import { apiKey } from "../../utils/constants.js";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +26,7 @@ function App() {
   const [articlesToShow, setArticlesToShow] = useState(3);
   const [news, setNews] = useState([]);
   const [tags, setTags] = useState("Default");
+  const [searchError, setSearchError] = useState("");
   const [activeModal, setActiveModal] = useState("");
   const [loginErrors, setLoginErrors] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -54,6 +56,13 @@ function App() {
 
   const handleSearch = (e) => {
     e.preventDefault();
+
+    if (!searchQuery || searchQuery.trim() === "") {
+      setSearchError("Please enter a keyword to search.");
+      return;
+    }
+
+    setSearchError("");
     setTags(searchQuery);
 
     setArticlesToShow(3);
@@ -161,6 +170,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 setArticlesToShow={setArticlesToShow}
                 articlesToShow={articlesToShow}
+                searchError={searchError}
               />
             }
           />
