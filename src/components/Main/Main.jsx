@@ -46,67 +46,62 @@ export const Main = ({
           searchError={searchError}
         />
       </section>
-      {isLoading ? (
-        <Preloader />
-      ) : apiError ? (
-        <p className={"main__error"}>{apiError}</p>
-      ) : (
-        /*Todo Review if !== Default this is still needed and if this section can be refactored to be simpler*/
-        tags &&
-        tags !== "Default" && (
-          <section className={"main__content"}>
-            {displayedArticles?.length === 0 ? (
-              <div className={"main__not-found-container"}>
-                <img className={"main__not-found"} src={notFound} alt="" />
-                <h2 className={"main__not-found-title"}>Nothing found</h2>
-                <p className={"main__not-found-subtitle"}>
-                  Sorry, but nothing matched
-                  <br /> your search terms.
-                </p>
-              </div>
-            ) : (
-              <>
-                <h1 className={"main__content-title"}>Search results</h1>
 
-                <ul className={"main__card-list"}>
-                  {displayedArticles
-                    ?.slice(0, articlesToShow)
-                    .map((article) => {
-                      const isThisArticleBookmarked = bookmarkedNews?.some(
-                        (item) => item.url === article.url
-                      );
+      {/*Todo Review if !== Default this is still needed and if this section can be refactored to be simpler*/}
 
-                      const handleToggle = () => {
-                        onCardBookmarked(article);
-                      };
+      {tags && tags !== "Default" && (
+        <section className={"main__content"}>
+          {isLoading ? (
+            <Preloader />
+          ) : apiError ? (
+            <p className={"main__error"}>{apiError}</p>
+          ) : displayedArticles?.length === 0 ? (
+            <div className={"main__not-found-container"}>
+              <img className={"main__not-found"} src={notFound} alt="" />
+              <h2 className={"main__not-found-title"}>Nothing found</h2>
+              <p className={"main__not-found-subtitle"}>
+                Sorry, but nothing matched
+                <br /> your search terms.
+              </p>
+            </div>
+          ) : (
+            <>
+              <h1 className={"main__content-title"}>Search results</h1>
 
-                      return (
-                        <NewsCard
-                          key={article.url}
-                          newsArticle={article}
-                          isBookmarked={isThisArticleBookmarked}
-                          onBookmarkClick={handleToggle}
-                          isLoggedIn={isLoggedIn}
-                        />
-                      );
-                    })}
-                </ul>
-              </>
-            )}
+              <ul className={"main__card-list"}>
+                {displayedArticles?.slice(0, articlesToShow).map((article) => {
+                  const isThisArticleBookmarked = bookmarkedNews?.some(
+                    (item) => item.url === article.url
+                  );
 
-            {articlesToShow < newsArray.length && (
-              <button
-                type={"button"}
-                className={"main__show-more"}
-                onClick={() => handleShowMore()}
-              >
-                Show more
-              </button>
-            )}
-          </section>
-        )
+                  const handleToggle = () => {
+                    onCardBookmarked(article);
+                  };
+
+                  return (
+                    <NewsCard
+                      key={article.url}
+                      newsArticle={article}
+                      isBookmarked={isThisArticleBookmarked}
+                      onBookmarkClick={handleToggle}
+                      isLoggedIn={isLoggedIn}
+                    />
+                  );
+                })}
+              </ul>
+              {articlesToShow < newsArray.length && (
+                <button
+                  type={"button"}
+                  className={"main__show-more"}
+                  onClick={() => handleShowMore()}
+                >
+                  Show more
+                </button>
+              )}
+            </>
+          )}
+        </section>
       )}
-
       <About />
     </main>
   );

@@ -22,7 +22,7 @@ import { apiKey } from "../../utils/constants.js";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [articlesToShow, setArticlesToShow] = useState(3);
   const [news, setNews] = useState([]);
   const [tags, setTags] = useState("Default");
