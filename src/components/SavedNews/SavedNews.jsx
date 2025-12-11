@@ -41,14 +41,13 @@ const SavedNews = ({ bookmarkedNews, handleDelete, currentUser }) => {
           const formattedTag = article.tag;
 
           return (
-            <NewsCard key={article.url} newsArticle={article}>
-              <button
-                onClick={onhandleDelete}
-                type={"button"}
-                className={"saved-news__trash"}
-              ></button>
-              <h2 className={"saved-news__tag"}>{formattedTag}</h2>
-            </NewsCard>
+            <NewsCard
+              onActionClick={onhandleDelete}
+              key={article.url}
+              newsArticle={article}
+              variant={"saved"}
+              tag={formattedTag}
+            />
           );
         })}
       </ul>

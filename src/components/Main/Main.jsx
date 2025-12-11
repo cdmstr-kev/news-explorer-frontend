@@ -70,9 +70,9 @@ export const Main = ({
 
               <ul className={"main__card-list"}>
                 {displayedArticles?.slice(0, articlesToShow).map((article) => {
-                  const isThisArticleBookmarked = bookmarkedNews?.some(
-                    (item) => item.url === article.url
-                  );
+                  const isThisArticleBookmarked =
+                    isLoggedIn &&
+                    bookmarkedNews?.some((item) => item.url === article.url);
 
                   const handleToggle = () => {
                     onCardBookmarked(article);
@@ -83,8 +83,9 @@ export const Main = ({
                       key={article.url}
                       newsArticle={article}
                       isBookmarked={isThisArticleBookmarked}
-                      onBookmarkClick={handleToggle}
+                      onActionClick={handleToggle}
                       isLoggedIn={isLoggedIn}
+                      variant={"search"}
                     />
                   );
                 })}

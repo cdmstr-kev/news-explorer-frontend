@@ -5,10 +5,11 @@ import placeholder from "../../assets/placeholder.svg";
 
 const NewsCard = ({
   newsArticle,
-  children,
   isBookmarked,
-  onBookmarkClick,
   isLoggedIn,
+  variant,
+  onActionClick,
+  tag,
 }) => {
   const publishedDate = formatDate(newsArticle.publishedAt);
   const newsContent = stripHtml(newsArticle.description);
@@ -38,17 +39,30 @@ const NewsCard = ({
           <p className={"card__description"}>{newsContent}</p>
         )}
         <p className={"card__subtitle"}>{newsArticle.source.name}</p>
-        {children}
       </div>
       <div className={"card__actions"}>
-        <button
-          onClick={onBookmarkClick}
-          className={`card__bookmark ${isBookmarked ? "card__bookmark_type_active" : ""}`}
-        ></button>
-        {!isLoggedIn && (
-          <span className={"card__alert card__alert_type_active"}>
-            Sign in to save articles
-          </span>
+        {variant === "search" ? (
+          <>
+            <button
+              onClick={onActionClick}
+              className={`card__bookmark ${isBookmarked ? "card__bookmark_type_active" : ""}`}
+            ></button>
+
+            {!isLoggedIn && (
+              <span className={"card__alert card__alert_type_active"}>
+                Sign in to save articles
+              </span>
+            )}
+          </>
+        ) : (
+          <>
+            <button
+              onClick={onActionClick}
+              type={"button"}
+              className={"saved-news__trash"}
+            ></button>
+            <h2 className={"saved-news__tag"}>{tag}</h2>
+          </>
         )}
       </div>
     </li>

@@ -19,6 +19,8 @@ import {
 } from "../../utils/helpers.js";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 import { apiKey } from "../../utils/constants.js";
+import { authorize } from "../../utils/auth.js";
+import { saveArticle, deleteArticle } from "../../utils/api.js";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -92,22 +94,19 @@ function App() {
     setIsLoading(true);
     const { email, password } = user;
 
-    const users = getUsersFromStorage();
-    const getUser = users.find((user) => user.email === email);
-
-    const userExists = validateUserCredentials(email, password);
-
-    if (!userExists) {
-      setLoginErrors("Invalid credentials. Please try again.");
-      setIsLoading(true);
-      return console.error("User doesn't exist in storage: ", user);
-    }
-
-    setLoginErrors("");
-    setCurrentUser(getUser);
-    setIsLoggedIn(true);
-    setIsLoading(false);
-    handleCloseActiveModal();
+    authorize(email, password)
+      .then((res) => {
+        setCurrentUser(res.user);
+        setIsLoggedIn(true);
+        setLoginErrors("");
+        setIsLoading(false);
+        handleCloseActiveModal();
+      })
+      .catch((err) => {
+        console.error("Failed to authorize user:", err);
+        setLoginErrors("Invalid credentials. Please try again.");
+        setIsLoading(false);
+      });
   };
 
   const handleOpenSignIn = () => {
@@ -125,18 +124,30 @@ function App() {
     );
 
     if (alreadyBookmarked) {
-      setBookmarkedNews(
-        bookmarkedNews.filter((item) => item.url !== updatedArticle.url)
-      );
+      deleteArticle(updatedArticle.url)
+        .then(() => {
+          setBookmarkedNews(
+            bookmarkedNews.filter((item) => item.url !== updatedArticle.url)
+          );
+        })
+        .catch((err) => console.error("Failed to delete bookmark:", err));
     } else {
-      setBookmarkedNews([...bookmarkedNews, updatedArticle]);
+      saveArticle(updatedArticle)
+        .then((savedArticle) => {
+          setBookmarkedNews([...bookmarkedNews, savedArticle]);
+        })
+        .catch((err) => console.error("Failed to save bookmark:", err));
     }
   };
 
   const handleDeleteBookmark = (article) => {
-    setBookmarkedNews(
-      bookmarkedNews.filter((item) => item.url !== article.url)
-    );
+    deleteArticle(article.url)
+      .then(() => {
+        setBookmarkedNews(
+          bookmarkedNews.filter((item) => item.url !== article.url)
+        );
+      })
+      .catch((err) => console.error("Failed to delete bookmark:", err));
   };
 
   useEffect(() => {
