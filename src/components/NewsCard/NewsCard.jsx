@@ -59,9 +59,9 @@ const NewsCard = ({
             <button
               onClick={onActionClick}
               type={"button"}
-              className={"saved-news__trash"}
+              className={"card__trash"}
             ></button>
-            <h2 className={"saved-news__tag"}>{tag}</h2>
+            <h2 className={"card__tag"}>{tag}</h2>
           </>
         )}
       </div>

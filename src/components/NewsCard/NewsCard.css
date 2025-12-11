@@ -129,3 +129,34 @@
   cursor: pointer;
 }
 
+.card__trash {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-image: url("../../assets/trash.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card__tag {
+  position: absolute;
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+
+  top: 24px;
+  left: 24px;
+  background-color: #FFFFFF;
+  padding: 8px 22px;
+  margin: 0;
+  border-radius: 10px;
+}
+
