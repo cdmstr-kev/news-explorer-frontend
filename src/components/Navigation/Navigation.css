@@ -63,3 +63,9 @@
   color: #1A1B22;
 }
 
+@media screen and (max-width: 768px) {
+  .nav__btn {
+    margin: 14px 30px 13px 30px;
+  }
+}
+

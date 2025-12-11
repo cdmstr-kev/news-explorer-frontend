@@ -4,17 +4,12 @@ import "./Navigation.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const Navigation = ({
-  isLoggedIn,
-  handleSignOut,
-  handleSignIn,
-  onSignInClick,
-}) => {
+const Navigation = ({ isLoggedIn, handleSignOut, onSignInClick }) => {
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
   return (
-    <div className={"nav"}>
+    <nav className={"nav"}>
       <Link
         to={"/"}
         className={`
@@ -23,7 +18,7 @@ const Navigation = ({
         ${!isLoggedIn ? "nav__title_position_right" : ""}
         `}
       >
-        Home
+        handleSignIn, Home
       </Link>
       {isLoggedIn && (
         <Link
@@ -50,7 +45,7 @@ const Navigation = ({
           <img
             className={"nav__btn-icon"}
             src={isOnSavedNews ? logoutIconDark : logoutIcon}
-            alt="logout-icon"
+            alt=""
           />
         </button>
       ) : (
@@ -58,7 +53,7 @@ const Navigation = ({
           Sign in
         </button>
       )}
-    </div>
+    </nav>
   );
 };
 export default Navigation;

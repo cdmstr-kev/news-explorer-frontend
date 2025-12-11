@@ -16,9 +16,22 @@ const Footer = () => {
           TripleTen
         </a>
       </nav>
+      {/*TODO Add social media icons*/}
       <div className={"footer__social"}>
-        <img src={githubIcon} alt="Github Icon" />
-        <img src={linkedInIcon} alt="LinkedIn" />
+        <a
+          href="https://github.com/cdmstr-kev"
+          target={"_blank"}
+          aria-label="Visit GitHub profile"
+        >
+          <img src={githubIcon} alt="" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/kevin-nedd/"
+          target={"_blank"}
+          aria-label="Visit LinkedIn profile"
+        >
+          <img src={linkedInIcon} alt="" />
+        </a>
       </div>
     </footer>
   );

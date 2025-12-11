@@ -31,58 +31,59 @@ const LoginModal = ({
   }, [isOpen]);
 
   return (
-    <div>
-      <ModalWithForm
-        isFormValid={isFormValid}
-        isOpen={isOpen}
-        title={"Sign In"}
-        handleCloseActiveModal={handleCloseActiveModal}
-        onSubmit={onSubmit}
-        buttonText={"Sign In"}
-        footerButton={
-          <button
-            type="button"
-            className="modal__switch"
-            onClick={handleOpenRegister}
-          >
-            or <span className={"modal__switch_color-blue"}>Sign up</span>
-          </button>
-        }
-      >
-        <fieldset className="modal__fieldset">
-          <label className={"modal__label"}>
-            Email
-            <input
-              className={"modal__input"}
-              type={"email"}
-              name={"email"}
-              placeholder={"Enter your email"}
-              required
-              value={values.email}
-              onChange={handleChange}
-            />
-          </label>
-        </fieldset>
-        {(errors.email || loginError) && (
-          <span className={"login__error"}>{errors.email || loginError}</span>
-        )}
+    <ModalWithForm
+      isFormValid={isFormValid}
+      isOpen={isOpen}
+      title={"Sign In"}
+      handleCloseActiveModal={handleCloseActiveModal}
+      onSubmit={onSubmit}
+      buttonText={"Sign In"}
+      footerButton={
+        <button
+          type="button"
+          className="modal__switch"
+          onClick={handleOpenRegister}
+        >
+          or <span className={"modal__switch_color-blue"}>Sign up</span>
+        </button>
+      }
+    >
+      <fieldset className="modal__fieldset">
+        <label htmlFor={"login-email"} className={"modal__label"}>
+          Email
+          <input
+            className={"modal__input"}
+            id={"login-email"}
+            type={"email"}
+            name={"email"}
+            placeholder={"Enter your email"}
+            autoComplete="email"
+            required
+            value={values.email}
+            onChange={handleChange}
+          />
+        </label>
+      </fieldset>
+      {(errors.email || loginError) && (
+        <span className={"login__error"}>{errors.email || loginError}</span>
+      )}
 
-        <fieldset className="modal__fieldset">
-          <label className={"modal__label"}>
-            Password
-            <input
-              className={"modal__input"}
-              type={"password"}
-              name={"password"}
-              placeholder={"Enter your password"}
-              required
-              value={values.password}
-              onChange={handleChange}
-            />
-          </label>
-        </fieldset>
-      </ModalWithForm>
-    </div>
+      <fieldset className="modal__fieldset">
+        <label htmlFor={"login-password"} className={"modal__label"}>
+          Password
+          <input
+            className={"modal__input"}
+            id={"login-password"}
+            type={"password"}
+            name={"password"}
+            placeholder={"Enter your password"}
+            required
+            value={values.password}
+            onChange={handleChange}
+          />
+        </label>
+      </fieldset>
+    </ModalWithForm>
   );
 };
 export default LoginModal;

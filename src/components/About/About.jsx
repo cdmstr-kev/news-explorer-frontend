@@ -3,12 +3,12 @@ import "./About.css";
 
 const About = () => {
   return (
-    <div className="about">
+    <div className="about" aria-labelledby="about-heading">
       <section className="author">
         <img
           className={"author-img"}
           src={avatarPlaceholder}
-          alt={"avatarPlaceholder"}
+          alt={"Portrait of web developer"}
         />
         <div className="author-info">
           <h2 className="author-title">About the author</h2>
