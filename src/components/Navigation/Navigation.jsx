@@ -18,7 +18,7 @@ const Navigation = ({ isLoggedIn, handleSignOut, onSignInClick }) => {
         ${!isLoggedIn ? "nav__title_position_right" : ""}
         `}
       >
-        handleSignIn, Home
+        Home
       </Link>
       {isLoggedIn && (
         <Link

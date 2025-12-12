@@ -5,17 +5,26 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 
+/*TODO check to see if this can be removed*/
 .main__hero-bg {
-  position: absolute;
-  top: 0;
-  z-index: -1;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*z-index: -1;*/
 }
 
 .main__hero {
-  max-width: 608px;
-  min-height: 493px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../../assets/hero.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding: 80px 0 80px 0;
 }
 
 .main__title {
@@ -23,8 +32,9 @@
   font-weight: 400;
   line-height: 64px;
   font-size: 60px;
-  margin: 80px auto 32px auto;
+  margin: 80px 0 32px 0;
   color: white;
+  max-width: 608px;
 
 }
 
@@ -35,11 +45,12 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+  max-width: 608px;
 }
 
 .main__content {
   width: 100%;
-  min-height: 282px;
+  min-height: 374px;
   padding: 0 104px;
   box-sizing: border-box;
   background-color: #F5F6F7;
@@ -95,7 +106,6 @@
 .main__not-found {
   width: 82px;
   height: 82px;
-  height: 100%;
   color: red;
 }
 
@@ -126,4 +136,43 @@
   font-size: 18px;
   text-align: center;
   margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .main__content {
+    padding: 0 40px;
+  }
+
+  .main__content-title {
+    font-size: 30px;
+    line-height: 34px;
+    margin: 40px auto 32px 0;
+  }
+
+  .main__title {
+    font-size: 36px;
+    line-height: 40px;
+    max-width: 385px;
+    margin: 38px 0 16px 0;
+  }
+
+  .main__hero {
+    padding: 66px 0 48px 0;
+    max-height: 320px;
+  }
+
+  .main__subtitle {
+    margin: 0 0 88px 0;
+    max-width: 452px;
+    margin-bottom: 48px;
+  }
+
+  .main__card-list {
+    gap: 8px;
+  }
+
+  .main__show-more {
+    margin: 32px auto 40px auto;
+  }
 }

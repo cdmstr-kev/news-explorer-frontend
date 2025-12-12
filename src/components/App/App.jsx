@@ -11,14 +11,8 @@ import SavedNews from "../SavedNews/SavedNews.jsx";
 import { queryNewsApi } from "../../utils/newsapi.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
-import {
-  validateUserCredentials,
-  checkUserInStorage,
-  getUsersFromStorage,
-  saveUserToStorage,
-} from "../../utils/helpers.js";
+import { saveUserToStorage } from "../../utils/helpers.js";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
-import { apiKey } from "../../utils/constants.js";
 import { authorize } from "../../utils/auth.js";
 import { saveArticle, deleteArticle } from "../../utils/api.js";
 
@@ -85,7 +79,7 @@ function App() {
       });
   };
 
-  const handleSignOut = (e) => {
+  const handleSignOut = () => {
     setIsLoggedIn(false);
     navigate("/");
   };

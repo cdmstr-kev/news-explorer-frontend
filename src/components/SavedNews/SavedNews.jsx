@@ -14,24 +14,25 @@ const SavedNews = ({ bookmarkedNews, handleDelete, currentUser }) => {
 
   return (
     <div className={"saved-news__container"}>
-      <p className={"saved-news__articles"}>Saved articles</p>
-      <h1 className={"saved-news__title"}>
-        {currentUser.username}, You have {totalArticles} saved
-        <br /> articles
-      </h1>
-      <p className={"saved-news__subtitle"}>
-        By keywords:{" "}
-        {userTags.length === 1 ? (
-          userTags[0]
-        ) : userTags.length === 2 ? (
-          displayedTags.join(", ")
-        ) : (
-          <>
-            {displayedTags.join(", ")} and {otherTags} other
-          </>
-        )}
-      </p>
-      <img src="" alt="" />
+      <div className={"saved-news__header"}>
+        <p className={"saved-news__articles"}>Saved articles</p>
+        <h1 className={"saved-news__title"}>
+          {currentUser.username}, You have {totalArticles} saved
+          <br /> articles
+        </h1>
+        <p className={"saved-news__subtitle"}>
+          By keywords:{" "}
+          {userTags.length === 1 ? (
+            userTags[0]
+          ) : userTags.length === 2 ? (
+            displayedTags.join(", ")
+          ) : (
+            <>
+              {displayedTags.join(", ")} and {otherTags} other
+            </>
+          )}
+        </p>
+      </div>
       <ul className={"saved-news__cardlist"}>
         {userBookmarks.map((article) => {
           const onhandleDelete = () => {

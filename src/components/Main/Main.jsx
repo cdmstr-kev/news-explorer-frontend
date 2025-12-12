@@ -1,7 +1,6 @@
 import "./Main.css";
 import SearchForm from "../SearchForm/SearchForm.jsx";
 import About from "../About/About.jsx";
-import hero from "../../assets/hero.png";
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import notFound from "../../assets/not-found.svg";
 import Preloader from "../Preloader/Preloader.jsx";
@@ -29,16 +28,16 @@ export const Main = ({
 
   return (
     <main className="main">
-      <img className={"main__hero-bg"} src={hero} alt="" />
       <section className="main__hero">
-        <h1 className="main__title">
-          What's going on in
-          <br /> the world?
-        </h1>
-        <h2 className="main__subtitle">
-          Find the lastest news on any topic and save the in your personal
-          account.
-        </h2>
+        <div>
+          <h1 className="main__title">
+            WhatWhat&apos;s going on in the world?
+          </h1>
+          <p className="main__subtitle">
+            Find the lastest news on any topic and save the in your personal
+            account.
+          </p>
+        </div>
         <SearchForm
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}

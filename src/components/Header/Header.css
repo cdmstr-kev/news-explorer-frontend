@@ -1,7 +1,15 @@
 .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
   width: 100%;
   border-bottom: rgba(255, 255, 255, .1) .5px solid;
+  max-width: 1440px;
+  align-self: center;
+  justify-self: center;
 }
 
 .header_theme_dark {
@@ -27,6 +35,13 @@
 
 @media screen and (max-width: 768px) {
   .header__logo {
-    margin-left: 30px;
+    margin: 22.73px 0 18px 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__logo {
+    font-size: 16px;
+    margin: 16px 0 16px 16px;
   }
 }

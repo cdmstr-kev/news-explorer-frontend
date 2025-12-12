@@ -45,15 +45,34 @@
 }
 .search-form input::placeholder {
   color: #B6BCBF;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 /*TODO update the styles and colors in this section*/
 .search-form__error {
   font-weight: 400;
-  color: red;
+  color: #FF5252;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0,0,0,0.5);
   border-radius: 10px;
   padding: 10px;
 }
 
+
+@media screen and (max-width: 600px) {
+  .search-form {
+    max-width: 452px;
+    margin-bottom: 24px;
+  }
+
+  .search-form input {
+    max-height: 56px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    max-width: 452px;
+  }
+}

@@ -39,3 +39,10 @@
   align-self: center;
   margin-left: 40px;
 }
+
+@media screen and (max-width: 768px) {
+  .footer {
+    margin-bottom: 16px;
+    padding: 24px 40px 0 40px;
+  }
+}

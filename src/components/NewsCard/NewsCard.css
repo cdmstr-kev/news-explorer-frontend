@@ -3,16 +3,14 @@
   max-height: 576px;
   text-decoration: none;
   list-style: none;
-  /*border: 1px solid red;*/
   border-radius: 16px;
   overflow: hidden;
   background: white;
   position: relative;
-  /*margin-bottom: 64px;*/
 }
 
 .card__image {
-  width: 400px;
+  max-width: 100%;
   height: 272px;
   object-fit: cover;
   padding: 0;
@@ -62,7 +60,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
   margin: 0 auto 0 auto;
   color: #B6BCBF;
@@ -158,5 +156,43 @@
   padding: 8px 22px;
   margin: 0;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 224px;
+    max-height: 420px;
+  }
+
+  .card__contents {
+    padding: 16px 16px;
+  }
+
+  .card__image {
+    /*width: 224px;*/
+    height: 150px;
+    object-fit: cover;
+    padding: 0;
+  }
+
+  .card__description {
+    margin: 0 auto 18px auto;
+  }
+
+  .card__bookmark {
+    top: 8px;
+    right: 8px;
+  }
+
+  .card__trash {
+    top: 8px;
+    right: 8px;
+  }
+
+  .card__tag {
+    top: 8px;
+    left: 8px;
+
+  }
 }
 

@@ -65,7 +65,29 @@
 
 @media screen and (max-width: 768px) {
   .nav__btn {
-    margin: 14px 30px 13px 30px;
+    margin: 14px 40px 13px 0;
+    max-width: 152px;
+    max-height: 40px;
   }
+
+  .nav__title {
+    margin: 22px 16px 0 0;
+    padding-bottom: 18px;
+  }
+
+
+}
+
+@media screen and (max-width: 768px) {
+  .nav__btn {
+    display: none;
+  }
+
+  .nav__title {
+    display: none;
+  }
+
+
+
 }
 
