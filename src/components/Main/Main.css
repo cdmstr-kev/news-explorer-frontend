@@ -129,7 +129,7 @@
   margin: 10px;
 }
 
-@media screen and (min-width: 321px) and (max-width: 768px) {
+@media screen and (min-width: 466px) and (max-width: 768px) {
 
   .main__content {
     padding: 0 40px;
@@ -167,7 +167,11 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 465px) {
+  .main__card-list {
+    justify-content: center;
+  }
+
   .main__title {
     font-size: 36px;
     line-height: 40px;

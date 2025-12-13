@@ -10,7 +10,7 @@
   align-self: center;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 465px) {
   .register__error {
     top: 265px;
   }

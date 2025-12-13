@@ -17,7 +17,7 @@
 }
 
 .modal_is-open {
-  display: block;
+  display: flex;
   opacity: 1;
   transition:
           visibility 0s linear 0s,
@@ -165,7 +165,7 @@
   color: #2F71E5;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 465px) {
   .modal {
     padding: 0;
   }

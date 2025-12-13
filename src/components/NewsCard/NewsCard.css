@@ -162,7 +162,7 @@
   border-radius: 10px;
 }
 
-@media screen and (min-width: 321px) and (max-width: 768px) {
+@media screen and (min-width: 466px) and (max-width: 768px) {
   .card {
     max-width: 224px;
     max-height: 420px;
@@ -199,7 +199,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 465px) {
   .card {
     max-width: 288px;
     height: 440px;
@@ -208,6 +208,7 @@
   .card__contents {
     padding: 16px;
   }
+
 
   .card__date {
     margin-bottom: 10px;

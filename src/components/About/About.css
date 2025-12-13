@@ -5,6 +5,8 @@
 .author {
   width: 100%;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 80px;
   gap: 56px;
   padding: 0 104px 80px 104px;
