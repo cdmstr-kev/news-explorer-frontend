@@ -38,6 +38,8 @@ function App() {
   });
   const navigate = useNavigate();
 
+  // TODO sign out button needs to have the user name
+
   const handleCloseActiveModal = () => {
     setLoginErrors("");
     setActiveModal("");
@@ -49,6 +51,11 @@ function App() {
 
   const handleOpenRegister = () => {
     setActiveModal("register-modal");
+  };
+
+  const handleMobileMenuClick = () => {
+    setActiveModal("header-modal");
+    console.log(activeModal);
   };
 
   const handleSearch = (e) => {
@@ -164,6 +171,10 @@ function App() {
           onSignInClick={handleOpenSignIn}
           handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
+          handleMobileMenu={handleMobileMenuClick}
+          activeModal={activeModal}
+          setActiveModal={setActiveModal}
+          handleCloseModal={handleCloseActiveModal}
         />
         <Routes>
           <Route

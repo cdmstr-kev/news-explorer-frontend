@@ -60,19 +60,30 @@
 }
 
 
-@media screen and (max-width: 600px) {
-  .search-form {
-    max-width: 452px;
-    margin-bottom: 24px;
-  }
-
-  .search-form input {
-    max-height: 56px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .search-form {
     max-width: 452px;
   }
+}
+
+@media screen and (max-width: 320px) {
+  .search-form__btn {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    box-sizing: border-box;
+  }
+
+  .search-form__input {
+    box-sizing: border-box;
+  }
+
+  .search-form {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 288px;
+  }
+
 }

@@ -3,8 +3,17 @@ import logoutIconDark from "../../assets/logout-dark.png";
 import "./Navigation.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import mobileMenu from "../../assets/mobile-menu.png";
+import closeBtn from "../../assets/close.png";
 
-const Navigation = ({ isLoggedIn, handleSignOut, onSignInClick }) => {
+const Navigation = ({
+  isLoggedIn,
+  handleSignOut,
+  onSignInClick,
+  handleMobileMenu,
+  activeModal,
+  handleCloseModal,
+}) => {
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
@@ -36,9 +45,7 @@ const Navigation = ({ isLoggedIn, handleSignOut, onSignInClick }) => {
         <button
           type="button"
           onClick={handleSignOut}
-          className={`
-        nav__btn
-        ${isOnSavedNews ? "nav__btn_theme_dark" : ""}
+          className={`nav__btn ${isOnSavedNews ? "nav__btn_theme_dark" : ""}
         `}
         >
           Sign out
@@ -53,6 +60,76 @@ const Navigation = ({ isLoggedIn, handleSignOut, onSignInClick }) => {
           Sign in
         </button>
       )}
+
+      {activeModal !== "signin-modal" && activeModal !== "signup-modal" && (
+        <button
+          onClick={handleMobileMenu}
+          type="button"
+          className={`nav__mobile-toggle ${isOnSavedNews ? "nav__mobile-toggle_theme_dark" : ""}`}
+        >
+          <img
+            className="nav__mobile-toggle-icon"
+            src={mobileMenu}
+            alt="Open menu"
+          />
+        </button>
+      )}
+
+      <div
+        className={`nav__mobile-menu ${
+          activeModal === "header-modal" ? "nav__mobile-menu_is-open" : ""
+        }`}
+      >
+        <button
+          onClick={handleCloseModal}
+          type="button"
+          className="nav__mobile-close"
+          aria-label="Close menu"
+        >
+          <img className="nav__mobile-close-icon" src={closeBtn} alt="" />
+        </button>
+
+        <div className="nav__mobile-content">
+          <Link
+            to="/"
+            onClick={handleCloseModal}
+            className={`nav__mobile-link ${isOnSavedNews ? "nav__mobile-link_theme_dark" : ""}`}
+          >
+            Home
+          </Link>
+
+          {isLoggedIn && (
+            <Link
+              to="/saved-news"
+              onClick={handleCloseModal}
+              className={`nav__mobile-link ${isOnSavedNews ? "nav__mobile-link_theme_dark" : ""}`}
+            >
+              Saved articles
+            </Link>
+          )}
+
+          <button
+            onClick={isLoggedIn ? handleSignOut : onSignInClick}
+            type="button"
+            className={`nav__mobile-btn ${isOnSavedNews ? "nav__mobile-btn_theme_dark" : ""}`}
+          >
+            {isLoggedIn ? (
+              <>
+                {isLoggedIn ? "Sign out" : "Sign in"}
+                {isLoggedIn && (
+                  <img
+                    className="nav__mobile-btn-icon"
+                    src={isOnSavedNews ? logoutIconDark : logoutIcon}
+                    alt=""
+                  />
+                )}
+              </>
+            ) : (
+              "Sign in"
+            )}
+          </button>
+        </div>
+      </div>
     </nav>
   );
 };

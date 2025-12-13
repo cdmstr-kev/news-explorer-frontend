@@ -1,4 +1,5 @@
 .card {
+  width: 100%;
   max-width: 400px;
   max-height: 576px;
   text-decoration: none;
@@ -193,6 +194,38 @@
     top: 8px;
     left: 8px;
 
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main__card-list {
+    gap: 10px;
+  }
+
+  .card {
+    max-width: 288px;
+    max-height: 420px;
+  }
+
+  .card__bookmark {
+    top: 16px;
+    right: 16px;
+  }
+
+  .card__image {
+    width: 100%;
+    max-width: 288px;
+
+  }
+
+  .card__title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .card__description {
+    font-size: 16px;
+    line-height: 22px;
   }
 }
 

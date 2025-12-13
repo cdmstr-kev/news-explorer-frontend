@@ -2,7 +2,15 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation.jsx";
 import { useLocation } from "react-router-dom";
 
-const Header = ({ isLoggedIn, handleSignOut, handleSignIn, onSignInClick }) => {
+const Header = ({
+  isLoggedIn,
+  handleSignOut,
+  handleSignIn,
+  onSignInClick,
+  handleMobileMenu,
+  activeModal,
+  handleCloseModal,
+}) => {
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
@@ -15,6 +23,9 @@ const Header = ({ isLoggedIn, handleSignOut, handleSignIn, onSignInClick }) => {
           onSignInClick={onSignInClick}
           handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
+          activeModal={activeModal}
+          handleMobileMenu={handleMobileMenu}
+          handleCloseModal={handleCloseModal}
         />
       </div>
     </header>

@@ -30,9 +30,7 @@ export const Main = ({
     <main className="main">
       <section className="main__hero">
         <div>
-          <h1 className="main__title">
-            WhatWhat&apos;s going on in the world?
-          </h1>
+          <h1 className="main__title">What&apos;s going on in the world?</h1>
           <p className="main__subtitle">
             Find the lastest news on any topic and save the in your personal
             account.

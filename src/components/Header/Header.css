@@ -27,21 +27,30 @@
   align-self: center;
   margin: 30px 0 26px 104px;
   color: #ffffff;
+  z-index: 200;
 }
 
 .header_theme_dark .header__logo {
   color: #1A1B22;
 }
 
-@media screen and (max-width: 768px) {
-  .header__logo {
-    margin: 22.73px 0 18px 40px;
-  }
-}
 
 @media screen and (max-width: 768px) {
   .header__logo {
     font-size: 16px;
     margin: 16px 0 16px 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+
+  .header__logo {
+    font-size: 16px;
+    z-index: 200;
+  }
+
+  .header__content {
+    margin-right: 16px;
+    margin-top: 16px;
   }
 }
