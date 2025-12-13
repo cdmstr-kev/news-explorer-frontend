@@ -5,11 +5,8 @@
   right: 0;
   z-index: 100;
   display: flex;
-  width: 100%;
   border-bottom: rgba(255, 255, 255, .1) .5px solid;
   max-width: 1440px;
-  align-self: center;
-  justify-self: center;
 }
 
 .header_theme_dark {
@@ -34,6 +31,11 @@
   color: #1A1B22;
 }
 
+.header__logo.header__logo-white,
+.header_theme_dark .header__logo.header__logo-white {
+  color: #ffffff;
+  z-index: 200;
+}
 
 @media screen and (max-width: 768px) {
   .header__logo {
@@ -45,8 +47,7 @@
 @media screen and (max-width: 320px) {
 
   .header__logo {
-    font-size: 16px;
-    z-index: 200;
+    margin-top: 16px;
   }
 
   .header__content {

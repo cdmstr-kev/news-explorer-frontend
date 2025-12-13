@@ -89,12 +89,12 @@
 
 
   .saved-news__container {
-    padding-top: 90px;
+    padding-top: 64px;
     /*width: 100%;*/
   }
 
   .saved-news__header {
-    padding: 0;
+    padding: 0 16px;
   }
 
   .saved-news__articles {
@@ -106,7 +106,7 @@
   .saved-news__title {
     font-size: 30px;
     line-height: 34px;
-    margin-bottom: 16px;
+    margin-bottom: 50px;
   }
 
   .saved-news__subtitle {
@@ -116,6 +116,8 @@
   .saved-news__cardlist {
     padding: 24px 16px;
   }
+
+
 }
 
 

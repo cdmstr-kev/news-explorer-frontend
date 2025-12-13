@@ -8,3 +8,9 @@
   top: 138px;
   padding: 0;
 }
+
+@media screen and (max-width: 320px) {
+  .login__error {
+    top: 112px;
+  }
+}

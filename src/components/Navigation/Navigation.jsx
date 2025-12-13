@@ -61,7 +61,7 @@ const Navigation = ({
         </button>
       )}
 
-      {activeModal !== "signin-modal" && activeModal !== "signup-modal" && (
+      {activeModal !== "signin-modal" && activeModal !== "register-modal" && (
         <button
           onClick={handleMobileMenu}
           type="button"

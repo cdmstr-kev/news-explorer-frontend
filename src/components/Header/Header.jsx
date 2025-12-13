@@ -16,7 +16,11 @@ const Header = ({
 
   return (
     <header className={`header ${isOnSavedNews ? "header_theme_dark" : ""}`}>
-      <h1 className="header__logo">NewsExplorer</h1>
+      <h1
+        className={`header__logo ${activeModal === "header-modal" ? "header__logo-white" : ""}`}
+      >
+        NewsExplorer
+      </h1>
       <div className={"header__content"}>
         <Navigation
           handleSignIn={handleSignIn}

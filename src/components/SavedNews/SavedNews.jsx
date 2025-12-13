@@ -17,8 +17,7 @@ const SavedNews = ({ bookmarkedNews, handleDelete, currentUser }) => {
       <div className={"saved-news__header"}>
         <p className={"saved-news__articles"}>Saved articles</p>
         <h1 className={"saved-news__title"}>
-          {currentUser.username}, You have {totalArticles} saved
-          <br /> articles
+          {currentUser.username}, You have {totalArticles} saved articles
         </h1>
         <p className={"saved-news__subtitle"}>
           By keywords:{" "}
