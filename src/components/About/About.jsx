@@ -1,4 +1,3 @@
-import avatarPlaceholder from "../../assets/avatar-placeholder.png";
 import "./About.css";
 import authorAvatar from "../../assets/author-avatar.jpg";
 
