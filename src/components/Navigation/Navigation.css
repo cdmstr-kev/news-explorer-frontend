@@ -158,14 +158,12 @@
 }
 
 .nav__mobile-toggle_theme_dark .nav__mobile-toggle-icon {
-  filter: brightness(0); /* Turns white icon to black */
+  filter: brightness(0);
 }
 
 .nav__mobile-btn_theme_dark .nav__mobile-btn-icon {
-  filter: brightness(100); /* Turns icon to black */
+  filter: brightness(100);
 }
-
-
 
 @media screen and (max-width: 768px) {
   .nav__btn {
