@@ -188,6 +188,14 @@
     margin: 22px 16px 0 0;
     padding-bottom: 18px;
   }
+
+  .nav__mobile-menu {
+    display: none;
+  }
+
+  .nav__mobile-overlay {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 465px) {
@@ -205,6 +213,16 @@
 
   .nav__title {
     display: none;
+  }
+
+  .nav__mobile-menu {
+    max-width: 100%;
+    display: block;
+    flex-grow: 1;
+  }
+
+  .nav__mobile-overlay {
+    display: block;
   }
 }
 

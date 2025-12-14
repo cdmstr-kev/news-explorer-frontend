@@ -20,10 +20,14 @@
 }
 
 .about__author-avatar {
-  max-width: 100%;
-  height: auto;
-  min-width: 0;
-  align-self: center;
+  width: 464px;
+  height: 464px;
+  min-width: 464px;
+  min-height: 464px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+
 }
 
 .about__author-title {
@@ -51,14 +55,17 @@
   }
 
   .about__author-avatar {
-    max-width: 100%;
+    width: 232px;
     height: 232px;
+    min-width: 232px;
+    min-height: 232px;
     align-self: center;
   }
 
   .about__author {
     margin-top: 40px;
     padding: 0 40px 61px 40px;
+    gap: 32px;
   }
 
   .about__author-info {
