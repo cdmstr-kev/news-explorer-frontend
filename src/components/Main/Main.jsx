@@ -44,8 +44,6 @@ export const Main = ({
         />
       </section>
 
-      {/*Todo Review if !== Default this is still needed and if this section can be refactored to be simpler*/}
-
       {tags && tags !== "Default" && (
         <section className={"main__content"}>
           {isLoading ? (

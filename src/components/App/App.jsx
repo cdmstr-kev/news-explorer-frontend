@@ -38,8 +38,6 @@ function App() {
   });
   const navigate = useNavigate();
 
-  // TODO sign out button needs to have the user name
-
   const handleCloseActiveModal = () => {
     setLoginErrors("");
     setActiveModal("");

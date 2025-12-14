@@ -18,3 +18,17 @@
   font-weight: 500;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'inter';
+  src: url("./fonts/inter-normal-400.woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'source-sans-pro';
+  src: url("./fonts/source-sans-pro-normal-400.woff");
+  font-weight: 400;
+  font-style: normal;
+}

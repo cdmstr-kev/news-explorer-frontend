@@ -1,4 +1,3 @@
-/*TODO revisit the css properties in here to confirm it matches the design*/
 .modal {
   position: absolute;
   height: 100vh;
@@ -82,19 +81,19 @@
   margin-bottom: 39px;
 }
 
-/*TODO check the inter font for the label*/
 .modal__label {
   display: flex;
   flex-direction: column;
   gap: 9px;
+  font-family: 'inter', Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
   color: #2F71E5;
 }
 
-/*TODO check the inter font for the label*/
 .modal__input {
+  font-family: 'inter', Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -128,7 +127,6 @@
   cursor: pointer;
 }
 
-/*TODO review the button color on hover*/
 .modal__submit-btn:hover {
   background-color: #2660C2;
 }
@@ -160,7 +158,6 @@
   cursor: pointer;
 }
 
-/*TODO need to review the color below*/
 .modal__switch_color-blue {
   color: #2F71E5;
 }
@@ -207,6 +204,7 @@
     max-height: 64px;
     max-width: 288px;
     padding: 20px 79px;
+    align-self: center;
   }
 
 }

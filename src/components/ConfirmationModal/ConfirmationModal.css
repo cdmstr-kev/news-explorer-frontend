@@ -6,8 +6,8 @@
 
   margin: 49px 0 14px 0;
 }
-/*TODO check on the font here. it needs to be inter*/
 .confirmation-modal__btn {
+  font-family: 'inter', Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 100%;

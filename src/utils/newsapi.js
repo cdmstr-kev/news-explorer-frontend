@@ -1,7 +1,5 @@
 import { handleApiResponse } from "./api.js";
 
-// TODO: check error handling, refactor to use promises
-// const baseUrl = import.meta.env.VITE_API_BASE_URL;
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 const newsApiBaseUrl =

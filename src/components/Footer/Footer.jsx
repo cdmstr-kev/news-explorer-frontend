@@ -13,11 +13,10 @@ const Footer = () => {
           <a className={"footer__link"} href="/">
             Home
           </a>
-          <a className={"footer__link"} href="/about">
+          <a className={"footer__link"} href="https://tripleten.com/">
             TripleTen
           </a>
         </nav>
-        {/*TODO Add social media icons*/}
         <div className={"footer__social"}>
           <a
             href="https://github.com/cdmstr-kev"
