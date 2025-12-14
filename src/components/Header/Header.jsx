@@ -1,17 +1,12 @@
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext.jsx";
 import "./Header.css";
 import Navigation from "../Navigation/Navigation.jsx";
 import { useLocation } from "react-router-dom";
 
-const Header = ({
-  isLoggedIn,
-  handleSignOut,
-  handleSignIn,
-  onSignInClick,
-  handleMobileMenu,
-  activeModal,
-  handleCloseModal,
-  currentUser,
-}) => {
+const Header = ({ isLoggedIn, handleSignOut, currentUser }) => {
+  const { activeModal } = useContext(ModalContext);
+
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
@@ -24,13 +19,8 @@ const Header = ({
       </h1>
       <div className={"header__content"}>
         <Navigation
-          handleSignIn={handleSignIn}
-          onSignInClick={onSignInClick}
-          handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
-          activeModal={activeModal}
-          handleMobileMenu={handleMobileMenu}
-          handleCloseModal={handleCloseModal}
+          handleSignOut={handleSignOut}
           currentUser={currentUser}
         />
       </div>

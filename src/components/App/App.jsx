@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext.jsx";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
@@ -16,13 +17,22 @@ import { authorize } from "../../utils/auth.js";
 import { saveArticle, deleteArticle } from "../../utils/api.js";
 
 function App() {
+  const {
+    activeModal,
+    setActiveModal,
+    handleCloseActiveModal,
+    handleOpenRegister,
+    handleOpenSignIn,
+    handleMobileMenuClick,
+  } = useContext(ModalContext);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [articlesToShow, setArticlesToShow] = useState(3);
   const [news, setNews] = useState([]);
   const [tags, setTags] = useState("Default");
   const [searchError, setSearchError] = useState("");
-  const [activeModal, setActiveModal] = useState("");
+  // const [activeModal, setActiveModal] = useState("");
   const [loginErrors, setLoginErrors] = useState("");
   const [apiError, setApiError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -37,23 +47,27 @@ function App() {
   });
   const navigate = useNavigate();
 
-  const handleCloseActiveModal = () => {
-    setLoginErrors("");
-    setActiveModal("");
-  };
-
+  // const handleCloseActiveModal = () => {
+  //   setLoginErrors("");
+  //   setActiveModal("");
+  // };
+  //
   const handleRegistration = (newUser) => {
     saveUserToStorage(newUser);
   };
+  //
+  // const handleOpenRegister = () => {
+  //   setActiveModal("register-modal");
+  // };
+  //
+  // const handleMobileMenuClick = () => {
+  //   setActiveModal("header-modal");
+  //   console.log(activeModal);
+  // };
 
-  const handleOpenRegister = () => {
-    setActiveModal("register-modal");
-  };
-
-  const handleMobileMenuClick = () => {
-    setActiveModal("header-modal");
-    console.log(activeModal);
-  };
+  // const handleOpenSignIn = () => {
+  //   setActiveModal("signin-modal");
+  // };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -105,10 +119,6 @@ function App() {
         setLoginErrors("Invalid credentials. Please try again.");
         setIsLoading(false);
       });
-  };
-
-  const handleOpenSignIn = () => {
-    setActiveModal("signin-modal");
   };
 
   const handleBookmark = (article) => {
@@ -164,14 +174,8 @@ function App() {
     <div className="app">
       <div className="app__content">
         <Header
-          handleSignIn={handleSignIn}
-          onSignInClick={handleOpenSignIn}
-          handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
-          handleMobileMenu={handleMobileMenuClick}
-          activeModal={activeModal}
-          setActiveModal={setActiveModal}
-          handleCloseModal={handleCloseActiveModal}
+          handleSignOut={handleSignOut}
           currentUser={currentUser}
         />
         <Routes>
@@ -210,26 +214,11 @@ function App() {
 
         <Footer />
         <RegisterModal
-          isOpen={activeModal === "register-modal"}
-          handleCloseActiveModal={handleCloseActiveModal}
-          handleOpenSignIn={handleOpenSignIn}
-          handleSignIn={handleSignIn}
           onUserRegister={handleRegistration}
           setIsLoading={setIsLoading}
-          activeModal={activeModal}
-          setActiveModal={setActiveModal}
         />
-        <LoginModal
-          isOpen={activeModal === "signin-modal"}
-          handleCloseActiveModal={handleCloseActiveModal}
-          handleSubmit={handleSignIn}
-          handleOpenRegister={handleOpenRegister}
-          loginError={loginErrors}
-        />
+        <LoginModal handleSubmit={handleSignIn} loginError={loginErrors} />
         <ConfirmationModal
-          isOpen={activeModal === "confirmation-modal"}
-          handleCloseActiveModal={handleCloseActiveModal}
-          handleOpenSignIn={handleOpenSignIn}
           message={"Registration successfully completed!"}
           buttonText={"Sign in"}
         />

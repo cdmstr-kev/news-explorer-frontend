@@ -1,13 +1,14 @@
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext.jsx";
+
 import { Modal } from "../Modal/Modal.jsx";
 import "./ConfirmationModal.css";
 
-const ConfirmationModal = ({
-  isOpen,
-  handleCloseActiveModal,
-  handleOpenSignIn,
-  message,
-  buttonText,
-}) => {
+const ConfirmationModal = ({ message, buttonText }) => {
+  const { activeModal, handleCloseActiveModal, handleOpenSignIn } =
+    useContext(ModalContext);
+  const isOpen = activeModal === "confirmation-modal";
+
   return (
     <Modal
       name={"confirmation"}

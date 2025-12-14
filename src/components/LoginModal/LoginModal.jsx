@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext.jsx";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 import "./LoginModal.css";
@@ -8,13 +11,12 @@ const defaultValues = {
   password: "",
 };
 
-const LoginModal = ({
-  isOpen,
-  handleCloseActiveModal,
-  handleSubmit,
-  handleOpenRegister,
-  loginError,
-}) => {
+const LoginModal = ({ handleSubmit, loginError }) => {
+  const { activeModal, handleCloseActiveModal, handleOpenRegister } =
+    useContext(ModalContext);
+
+  const isOpen = activeModal === "signin-modal";
+
   const { values, handleChange, isFormValid, resetForm, errors } =
     useForm(defaultValues);
 

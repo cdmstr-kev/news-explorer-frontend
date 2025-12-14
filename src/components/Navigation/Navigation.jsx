@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext.jsx";
+
 import logoutIcon from "../../assets/logout.png";
 import logoutIconDark from "../../assets/logout-dark.png";
 import "./Navigation.css";
@@ -6,15 +9,14 @@ import { useLocation } from "react-router-dom";
 import mobileMenu from "../../assets/mobile-menu.png";
 import closeBtn from "../../assets/close.png";
 
-const Navigation = ({
-  isLoggedIn,
-  handleSignOut,
-  onSignInClick,
-  handleMobileMenu,
-  activeModal,
-  handleCloseModal,
-  currentUser,
-}) => {
+const Navigation = ({ isLoggedIn, handleSignOut, currentUser }) => {
+  const {
+    activeModal,
+    handleMobileMenuClick,
+    handleCloseActiveModal,
+    handleOpenSignIn,
+  } = useContext(ModalContext);
+
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
@@ -61,14 +63,14 @@ const Navigation = ({
           />
         </button>
       ) : (
-        <button onClick={onSignInClick} type="button" className="nav__btn">
+        <button onClick={handleOpenSignIn} type="button" className="nav__btn">
           Sign in
         </button>
       )}
 
       {activeModal !== "signin-modal" && activeModal !== "register-modal" && (
         <button
-          onClick={handleMobileMenu}
+          onClick={handleMobileMenuClick}
           type="button"
           className={`nav__mobile-toggle ${isOnSavedNews ? "nav__mobile-toggle_theme_dark" : ""}`}
         >
@@ -86,7 +88,7 @@ const Navigation = ({
         }`}
       >
         <button
-          onClick={handleCloseModal}
+          onClick={handleCloseActiveModal}
           type="button"
           className="nav__mobile-close"
           aria-label="Close menu"
@@ -97,7 +99,7 @@ const Navigation = ({
         <div className="nav__mobile-content">
           <Link
             to="/"
-            onClick={handleCloseModal}
+            onClick={handleCloseActiveModal}
             className={`nav__mobile-link ${isOnSavedNews ? "nav__mobile-link_theme_dark" : ""}`}
           >
             Home
@@ -106,7 +108,7 @@ const Navigation = ({
           {isLoggedIn && (
             <Link
               to="/saved-news"
-              onClick={handleCloseModal}
+              onClick={handleCloseActiveModal}
               className={`nav__mobile-link ${isOnSavedNews ? "nav__mobile-link_theme_dark" : ""}`}
             >
               Saved articles
@@ -114,7 +116,7 @@ const Navigation = ({
           )}
 
           <button
-            onClick={isLoggedIn ? handleSignOut : onSignInClick}
+            onClick={isLoggedIn ? handleSignOut : handleOpenSignIn}
             type="button"
             className={`nav__mobile-btn ${isOnSavedNews ? "nav__mobile-btn_theme_dark" : ""}`}
           >

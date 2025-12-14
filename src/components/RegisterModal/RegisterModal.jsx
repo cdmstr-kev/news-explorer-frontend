@@ -1,21 +1,26 @@
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext.jsx";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 import "./RegisterModal.css";
 import { checkUserInStorage } from "../../utils/helpers.js";
 
-const RegisterModal = ({
-  isOpen,
-  handleCloseActiveModal,
-  onUserRegister,
-  setIsLoading,
-  handleOpenSignIn,
-  setActiveModal,
-}) => {
+const RegisterModal = ({ setIsLoading, onUserRegister }) => {
   const defaultValues = {
     email: "",
     password: "",
     username: "",
   };
+
+  const {
+    activeModal,
+    handleCloseActiveModal,
+    handleOpenSignIn,
+    setActiveModal,
+  } = useContext(ModalContext);
+
+  const isOpen = activeModal === "register-modal";
 
   const { values, handleChange, resetForm, errors, setErrors, isFormValid } =
     useForm(defaultValues);

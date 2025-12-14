@@ -1,11 +1,11 @@
 .header {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+  left: 0;
+  right: 0;
   z-index: 100;
   display: flex;
+  width: 100%;
   border-bottom: rgba(255, 255, 255, .1) .5px solid;
   max-width: 1440px;
 }
@@ -36,6 +36,14 @@
 .header_theme_dark .header__logo.header__logo-white {
   color: #ffffff;
   z-index: 200;
+}
+
+@media screen and (min-width: 1441px) {
+  .header {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {
