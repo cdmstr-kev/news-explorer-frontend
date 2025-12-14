@@ -133,3 +133,11 @@ BEM (Block Element Modifier) methodology is used for CSS class naming.
 - News data provided by [News API](https://newsapi.org)
 - Design specifications by TripleTen
 
+## Github Pages Link
+https://cdmstr-kev.github.io/news-explorer-frontend/#/
+
+
+## Project Pitch Video
+Check out [this video](https://drive.google.com/file/d/1CkxiE9jcWrMfEarvQbQvEdjjFGufmsa8/view?usp=drive_link), 
+where I describe my project and some challenges I faced while building it.
+
