@@ -203,6 +203,7 @@ function App() {
                 bookmarkedNews={bookmarkedNews}
                 handleDelete={handleDeleteBookmark}
                 currentUser={currentUser}
+                isLoggedIn={isLoggedIn}
               />
             }
           />

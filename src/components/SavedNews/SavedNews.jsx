@@ -1,8 +1,17 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import "./SavedNews.css";
 import { getTags } from "../../utils/helpers.js";
 
-const SavedNews = ({ bookmarkedNews, handleDelete, currentUser }) => {
+const SavedNews = ({
+  bookmarkedNews,
+  handleDelete,
+  currentUser,
+  isLoggedIn,
+}) => {
+  const navigate = useNavigate();
+
   const userBookmarks = bookmarkedNews.filter(
     (article) => article.user === currentUser.email
   );
@@ -11,6 +20,12 @@ const SavedNews = ({ bookmarkedNews, handleDelete, currentUser }) => {
   const userTags = allTags.uniqueTags;
   const displayedTags = allTags.displayedTags;
   const otherTags = allTags.otherTags;
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className={"saved-news__container"}>
