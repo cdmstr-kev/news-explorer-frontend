@@ -3,6 +3,11 @@ import useForm from "../../hooks/useForm.js";
 import "./LoginModal.css";
 import { useEffect } from "react";
 
+const defaultValues = {
+  email: "",
+  password: "",
+};
+
 const LoginModal = ({
   isOpen,
   handleCloseActiveModal,
@@ -10,19 +15,14 @@ const LoginModal = ({
   handleOpenRegister,
   loginError,
 }) => {
-  const defaultValues = {
-    email: "",
-    password: "",
-  };
-
   const { values, handleChange, isFormValid, resetForm, errors } =
     useForm(defaultValues);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
       resetForm();
     }
-  }, [isOpen]);
+  }, [isOpen, resetForm]);
 
   const onSubmit = (e) => {
     e.preventDefault();

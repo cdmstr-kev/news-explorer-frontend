@@ -26,7 +26,7 @@ export const checkToken = (token) => {
 };
 
 export const register = (userData) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     saveUserToStorage(userData);
     resolve({
       message: "Registration successful",
