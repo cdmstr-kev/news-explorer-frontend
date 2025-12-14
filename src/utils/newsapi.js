@@ -2,10 +2,9 @@ import { handleApiResponse } from "./api.js";
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
-const newsApiBaseUrl =
-  import.meta.env.PRO === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
+const newsApiBaseUrl = import.meta.env.PROD
+  ? "https://nomoreparties.co/news/v2/everything"
+  : "https://newsapi.org/v2/everything";
 
 export const queryNewsApi = (query) => {
   const today = new Date();
