@@ -15,8 +15,10 @@ export const AuthProvider = ({ children }) => {
   });
 
   const [loginErrors, setLoginErrors] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSignIn = (user) => {
+    setIsLoading(true);
     const { email, password } = user;
 
     return authorize(email, password)
@@ -24,11 +26,13 @@ export const AuthProvider = ({ children }) => {
         setCurrentUser(res.user);
         setIsLoggedIn(true);
         setLoginErrors("");
+        setIsLoading(false);
         return res;
       })
       .catch((err) => {
         console.error("Failed to authorize user:", err);
         setLoginErrors("Invalid credentials. Please try again.");
+        setIsLoading(false);
         throw err;
       });
   };
@@ -51,6 +55,8 @@ export const AuthProvider = ({ children }) => {
     isLoggedIn,
     currentUser,
     loginErrors,
+    isLoading,
+    setIsLoading,
     setLoginErrors,
     handleSignIn,
     handleSignOut,

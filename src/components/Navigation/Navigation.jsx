@@ -25,8 +25,6 @@ const Navigation = () => {
 
   const username = currentUser?.username || "";
 
-  console.log(typeof username);
-
   return (
     <nav className={"nav"}>
       <Link

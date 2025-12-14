@@ -5,14 +5,17 @@ import ReactDOM from "react-dom/client";
 import App from "./components/App/App.jsx";
 import "./index.css";
 import { ModalProvider } from "./contexts/ModalContext";
-import { AuthContext, AuthProvider } from "./contexts/AuthContext.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
+import { NewsProvider } from "./contexts/NewsContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <ModalProvider>
         <AuthProvider>
-          <App />
+          <NewsProvider>
+            <App />
+          </NewsProvider>
         </AuthProvider>
       </ModalProvider>
     </BrowserRouter>

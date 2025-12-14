@@ -4,12 +4,6 @@ export const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
   const [activeModal, setActiveModal] = useState("");
-  console.log(
-    "🔴 MODAL CONTEXT RENDERING - activeModal:",
-    activeModal,
-    "Type:",
-    typeof activeModal
-  );
 
   const handleCloseActiveModal = () => {
     setActiveModal("");
@@ -24,7 +18,6 @@ export const ModalProvider = ({ children }) => {
   };
 
   const handleMobileMenuClick = () => {
-    console.log("🟢 MOBILE MENU CLICKED!");
     setActiveModal("header-modal");
   };
 

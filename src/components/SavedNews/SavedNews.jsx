@@ -1,15 +1,15 @@
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext.jsx";
+import { NewsContext } from "../../contexts/NewsContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import "./SavedNews.css";
 import { getTags } from "../../utils/helpers.js";
 
-const SavedNews = ({
-  bookmarkedNews,
-  handleDelete,
-  currentUser,
-  isLoggedIn,
-}) => {
+const SavedNews = () => {
+  const { currentUser, isLoggedIn } = useContext(AuthContext);
+  const { bookmarkedNews, handleDeleteBookmark } = useContext(NewsContext);
   const navigate = useNavigate();
 
   const userBookmarks = bookmarkedNews.filter(
@@ -32,7 +32,7 @@ const SavedNews = ({
       <div className={"saved-news__header"}>
         <p className={"saved-news__articles"}>Saved articles</p>
         <h1 className={"saved-news__title"}>
-          {currentUser.username}, You have {totalArticles} saved articles
+          {currentUser?.username}, You have {totalArticles} saved articles
         </h1>
         <p className={"saved-news__subtitle"}>
           By keywords:{" "}
@@ -50,7 +50,7 @@ const SavedNews = ({
       <ul className={"saved-news__cardlist"}>
         {userBookmarks.map((article) => {
           const onhandleDelete = () => {
-            handleDelete(article);
+            handleDeleteBookmark(article);
           };
 
           const formattedTag = article.tag;
