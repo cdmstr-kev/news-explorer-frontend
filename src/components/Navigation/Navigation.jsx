@@ -84,6 +84,13 @@ const Navigation = () => {
       )}
 
       <div
+        className={`nav__mobile-overlay ${
+          activeModal === "header-modal" ? "nav__mobile-overlay_visible" : ""
+        }`}
+        onClick={handleCloseActiveModal}
+      />
+
+      <div
         className={`nav__mobile-menu ${
           activeModal === "header-modal" ? "nav__mobile-menu_open" : ""
         }`}
