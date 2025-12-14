@@ -15,7 +15,7 @@ export const handleApiResponse = (res) => {
 export const makeRequest = (endpoint, options = {}) => {
   const url = `${newsApiBaseUrl}${endpoint}`;
 
-  return fetch(`${newsApiBaseUrl}${endpoint}`, options).then(handleApiResponse);
+  return fetch(url, options).then(handleApiResponse);
 };
 
 function getNews() {

@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-// TODO might need to protect the saved news page
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
