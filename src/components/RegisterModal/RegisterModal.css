@@ -1,4 +1,4 @@
-.register__error {
+.modal__error_type_register {
   font-family: roboto, Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: 12px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 465px) {
-  .register__error {
+  .modal__error_type_register {
     top: 265px;
   }
 }

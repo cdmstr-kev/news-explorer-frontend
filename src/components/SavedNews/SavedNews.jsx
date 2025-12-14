@@ -47,7 +47,7 @@ const SavedNews = () => {
           )}
         </p>
       </div>
-      <ul className={"saved-news__cardlist"}>
+      <ul className={"saved-news__card-list"}>
         {userBookmarks.map((article) => {
           const onhandleDelete = () => {
             handleDeleteBookmark(article);

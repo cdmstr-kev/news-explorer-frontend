@@ -1,4 +1,4 @@
-.login__error {
+.modal__error_type_login {
   font-family: roboto, Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: 12px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 465px) {
-  .login__error {
+  .modal__error_type_login {
     top: 112px;
   }
 }

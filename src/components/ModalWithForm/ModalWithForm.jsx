@@ -21,7 +21,7 @@ export default function ModalWithForm({
         <button
           disabled={!isFormValid}
           type={"submit"}
-          className={`modal__submit-btn ${!isFormValid && "modal__submit-btn_disabled"}`}
+          className={`modal__submit-btn ${!isFormValid && "modal__submit-btn_state_disabled"}`}
         >
           {buttonText}
         </button>

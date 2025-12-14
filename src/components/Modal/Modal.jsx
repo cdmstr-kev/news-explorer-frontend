@@ -14,9 +14,7 @@ export const Modal = ({
   useModalClose(isOpen, onClose);
 
   return (
-    <div
-      className={`modal ${isOpen ? "modal_is-open" : ""} modal_type_${name}`}
-    >
+    <div className={`modal ${isOpen ? "modal_opened" : ""} modal_type_${name}`}>
       <div className={`modal__container ${containerClassName}`}>
         {children}
         <button

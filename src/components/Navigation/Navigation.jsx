@@ -85,7 +85,7 @@ const Navigation = () => {
 
       <div
         className={`nav__mobile-menu ${
-          activeModal === "header-modal" ? "nav__mobile-menu_is-open" : ""
+          activeModal === "header-modal" ? "nav__mobile-menu_open" : ""
         }`}
       >
         <button

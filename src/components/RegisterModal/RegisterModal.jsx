@@ -59,7 +59,7 @@ const RegisterModal = ({ onUserRegister }) => {
           className="modal__switch"
           onClick={handleOpenSignIn}
         >
-          or <span className={"modal__switch_color-blue"}>Sign in</span>
+          or <span className={"modal__switch_color_blue"}>Sign in</span>
         </button>
       }
     >
@@ -111,7 +111,7 @@ const RegisterModal = ({ onUserRegister }) => {
         </label>
       </fieldset>
       {errors.email && (
-        <span className={"register__error"}>{errors.email}</span>
+        <span className={"modal__error_type_register"}>{errors.email}</span>
       )}
     </ModalWithForm>
   );

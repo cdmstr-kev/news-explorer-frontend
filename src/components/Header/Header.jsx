@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header className={`header ${isOnSavedNews ? "header_theme_dark" : ""}`}>
       <h1
-        className={`header__logo ${activeModal === "header-modal" ? "header__logo-white" : ""}`}
+        className={`header__logo ${activeModal === "header-modal" ? "header__logo_color_white" : ""}`}
       >
         NewsExplorer
       </h1>

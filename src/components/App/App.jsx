@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext.jsx";
-import { ModalContext } from "../../contexts/ModalContext.jsx";
 import { NewsContext } from "../../contexts/NewsContext.jsx";
 
 import "./App.css";
@@ -16,17 +14,7 @@ import { saveUserToStorage } from "../../utils/helpers.js";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 
 function App() {
-  const {
-    activeModal,
-    setActiveModal,
-    handleCloseActiveModal,
-    handleOpenRegister,
-    handleOpenSignIn,
-    handleMobileMenuClick,
-  } = useContext(ModalContext);
-
-  const { isLoggedIn, currentUser, loginErrors, handleSignIn, handleSignOut } =
-    useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   const {
     searchQuery,
@@ -41,7 +29,6 @@ function App() {
     bookmarkedNews,
     handleSearch,
     handleBookmark,
-    handleDeleteBookmark,
   } = useContext(NewsContext);
 
   const handleRegistration = (newUser) => {

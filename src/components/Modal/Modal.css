@@ -15,7 +15,7 @@
   display: none;
 }
 
-.modal_is-open {
+.modal_opened {
   display: flex;
   opacity: 1;
   transition:
@@ -131,13 +131,13 @@
   background-color: #2660C2;
 }
 
-.modal__submit-btn_disabled {
+.modal__submit-btn_state_disabled {
   background-color: #E6E8EB;
   cursor: not-allowed;
   color: #B6BCBF;
 }
 
-.modal__submit-btn_disabled:hover {
+.modal__submit-btn_state_disabled:hover {
   background-color: #E6E8EB;
   cursor: not-allowed;
   color: #B6BCBF;
@@ -158,7 +158,7 @@
   cursor: pointer;
 }
 
-.modal__switch_color-blue {
+.modal__switch_color_blue {
   color: #2F71E5;
 }
 

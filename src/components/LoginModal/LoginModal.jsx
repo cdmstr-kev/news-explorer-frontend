@@ -53,7 +53,7 @@ const LoginModal = () => {
           className="modal__switch"
           onClick={handleOpenRegister}
         >
-          or <span className={"modal__switch_color-blue"}>Sign up</span>
+          or <span className={"modal__switch_color_blue"}>Sign up</span>
         </button>
       }
     >
@@ -74,7 +74,9 @@ const LoginModal = () => {
         </label>
       </fieldset>
       {(errors.email || loginErrors) && (
-        <span className={"login__error"}>{errors.email || loginErrors}</span>
+        <span className={"modal__error_type_login"}>
+          {errors.email || loginErrors}
+        </span>
       )}
 
       <fieldset className="modal__fieldset">

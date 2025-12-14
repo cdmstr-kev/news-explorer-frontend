@@ -32,8 +32,8 @@
   color: #1A1B22;
 }
 
-.header__logo.header__logo-white,
-.header_theme_dark .header__logo.header__logo-white {
+.header__logo.header__logo_color_white,
+.header_theme_dark .header__logo.header__logo_color_white {
   color: #ffffff;
   z-index: 200;
 }

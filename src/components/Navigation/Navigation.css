@@ -89,7 +89,7 @@
   box-sizing: border-box;
 }
 
-.nav__mobile-menu_is-open {
+.nav__mobile-menu_open {
   right: 0;
 }
 
