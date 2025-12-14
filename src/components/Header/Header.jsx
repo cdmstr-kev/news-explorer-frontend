@@ -4,7 +4,7 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation.jsx";
 import { useLocation } from "react-router-dom";
 
-const Header = ({ isLoggedIn, handleSignOut, currentUser }) => {
+const Header = () => {
   const { activeModal } = useContext(ModalContext);
 
   const location = useLocation();
@@ -18,11 +18,7 @@ const Header = ({ isLoggedIn, handleSignOut, currentUser }) => {
         NewsExplorer
       </h1>
       <div className={"header__content"}>
-        <Navigation
-          isLoggedIn={isLoggedIn}
-          handleSignOut={handleSignOut}
-          currentUser={currentUser}
-        />
+        <Navigation />
       </div>
     </header>
   );

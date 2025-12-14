@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext.jsx";
 import { ModalContext } from "../../contexts/ModalContext.jsx";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
@@ -11,9 +12,11 @@ const defaultValues = {
   password: "",
 };
 
-const LoginModal = ({ handleSubmit, loginError }) => {
+const LoginModal = () => {
   const { activeModal, handleCloseActiveModal, handleOpenRegister } =
     useContext(ModalContext);
+
+  const { handleSignIn, loginErrors } = useContext(AuthContext);
 
   const isOpen = activeModal === "signin-modal";
 
@@ -29,7 +32,11 @@ const LoginModal = ({ handleSubmit, loginError }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    handleSubmit(values);
+    handleSignIn(values)
+      .then(() => {
+        handleCloseActiveModal();
+      })
+      .catch(() => {});
   };
 
   return (
@@ -66,8 +73,8 @@ const LoginModal = ({ handleSubmit, loginError }) => {
           />
         </label>
       </fieldset>
-      {(errors.email || loginError) && (
-        <span className={"login__error"}>{errors.email || loginError}</span>
+      {(errors.email || loginErrors) && (
+        <span className={"login__error"}>{errors.email || loginErrors}</span>
       )}
 
       <fieldset className="modal__fieldset">

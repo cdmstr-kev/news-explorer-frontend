@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext.jsx";
 import { ModalContext } from "../../contexts/ModalContext.jsx";
 
 import "./App.css";
@@ -26,6 +27,9 @@ function App() {
     handleMobileMenuClick,
   } = useContext(ModalContext);
 
+  const { isLoggedIn, currentUser, loginErrors, handleSignIn, handleSignOut } =
+    useContext(AuthContext);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [articlesToShow, setArticlesToShow] = useState(3);
@@ -33,14 +37,14 @@ function App() {
   const [tags, setTags] = useState("Default");
   const [searchError, setSearchError] = useState("");
   // const [activeModal, setActiveModal] = useState("");
-  const [loginErrors, setLoginErrors] = useState("");
+  // const [loginErrors, setLoginErrors] = useState("");
   const [apiError, setApiError] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return JSON.parse(localStorage.getItem("isLoggedIn") || "false");
-  });
-  const [currentUser, setCurrentUser] = useState(() => {
-    return JSON.parse(localStorage.getItem("currentUser") || null);
-  });
+  // const [isLoggedIn, setIsLoggedIn] = useState(() => {
+  //   return JSON.parse(localStorage.getItem("isLoggedIn") || "false");
+  // });
+  // const [currentUser, setCurrentUser] = useState(() => {
+  //   return JSON.parse(localStorage.getItem("currentUser") || null);
+  // });
   const [bookmarkedNews, setBookmarkedNews] = useState(() => {
     const savedNews = localStorage.getItem("bookmarkedNews");
     return savedNews ? JSON.parse(savedNews) : [];
@@ -97,29 +101,29 @@ function App() {
       });
   };
 
-  const handleSignOut = () => {
-    setIsLoggedIn(false);
-    navigate("/");
-  };
-
-  const handleSignIn = (user) => {
-    setIsLoading(true);
-    const { email, password } = user;
-
-    authorize(email, password)
-      .then((res) => {
-        setCurrentUser(res.user);
-        setIsLoggedIn(true);
-        setLoginErrors("");
-        setIsLoading(false);
-        handleCloseActiveModal();
-      })
-      .catch((err) => {
-        console.error("Failed to authorize user:", err);
-        setLoginErrors("Invalid credentials. Please try again.");
-        setIsLoading(false);
-      });
-  };
+  // const handleSignOut = () => {
+  //   setIsLoggedIn(false);
+  //   navigate("/");
+  // };
+  //
+  // const handleSignIn = (user) => {
+  //   setIsLoading(true);
+  //   const { email, password } = user;
+  //
+  //   authorize(email, password)
+  //     .then((res) => {
+  //       setCurrentUser(res.user);
+  //       setIsLoggedIn(true);
+  //       setLoginErrors("");
+  //       setIsLoading(false);
+  //       handleCloseActiveModal();
+  //     })
+  //     .catch((err) => {
+  //       console.error("Failed to authorize user:", err);
+  //       setLoginErrors("Invalid credentials. Please try again.");
+  //       setIsLoading(false);
+  //     });
+  // };
 
   const handleBookmark = (article) => {
     if (!isLoggedIn) return;
@@ -158,26 +162,22 @@ function App() {
       .catch((err) => console.error("Failed to delete bookmark:", err));
   };
 
-  useEffect(() => {
-    localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarkedNews));
-  }, [bookmarkedNews]);
-
-  useEffect(() => {
-    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
-  }, [isLoggedIn]);
-
-  useEffect(() => {
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  }, [currentUser]);
+  // useEffect(() => {
+  //   localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarkedNews));
+  // }, [bookmarkedNews]);
+  //
+  // useEffect(() => {
+  //   localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+  // }, [isLoggedIn]);
+  //
+  // useEffect(() => {
+  //   localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  // }, [currentUser]);
 
   return (
     <div className="app">
       <div className="app__content">
-        <Header
-          isLoggedIn={isLoggedIn}
-          handleSignOut={handleSignOut}
-          currentUser={currentUser}
-        />
+        <Header />
         <Routes>
           <Route
             path="/"
@@ -217,7 +217,7 @@ function App() {
           onUserRegister={handleRegistration}
           setIsLoading={setIsLoading}
         />
-        <LoginModal handleSubmit={handleSignIn} loginError={loginErrors} />
+        <LoginModal />
         <ConfirmationModal
           message={"Registration successfully completed!"}
           buttonText={"Sign in"}

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext.jsx";
+import { AuthContext } from "../../contexts/AuthContext.jsx";
 
 import logoutIcon from "../../assets/logout.png";
 import logoutIconDark from "../../assets/logout-dark.png";
@@ -9,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import mobileMenu from "../../assets/mobile-menu.png";
 import closeBtn from "../../assets/close.png";
 
-const Navigation = ({ isLoggedIn, handleSignOut, currentUser }) => {
+const Navigation = () => {
   const {
     activeModal,
     handleMobileMenuClick,
@@ -17,10 +18,12 @@ const Navigation = ({ isLoggedIn, handleSignOut, currentUser }) => {
     handleOpenSignIn,
   } = useContext(ModalContext);
 
+  const { currentUser, isLoggedIn, handleSignOut } = useContext(AuthContext);
+
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
 
-  const { username } = currentUser;
+  const username = currentUser?.username || "";
 
   console.log(typeof username);
 
