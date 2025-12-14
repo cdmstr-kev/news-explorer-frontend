@@ -13,9 +13,14 @@ const Navigation = ({
   handleMobileMenu,
   activeModal,
   handleCloseModal,
+  currentUser,
 }) => {
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
+
+  const { username } = currentUser;
+
+  console.log(typeof username);
 
   return (
     <nav className={"nav"}>
@@ -48,7 +53,7 @@ const Navigation = ({
           className={`nav__btn ${isOnSavedNews ? "nav__btn_theme_dark" : ""}
         `}
         >
-          Sign out
+          {username}
           <img
             className={"nav__btn-icon"}
             src={isOnSavedNews ? logoutIconDark : logoutIcon}
@@ -115,7 +120,7 @@ const Navigation = ({
           >
             {isLoggedIn ? (
               <>
-                {isLoggedIn ? "Sign out" : "Sign in"}
+                {isLoggedIn ? username : "Sign in"}
                 {isLoggedIn && (
                   <img
                     className="nav__mobile-btn-icon"

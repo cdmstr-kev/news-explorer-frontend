@@ -175,6 +175,7 @@ function App() {
           activeModal={activeModal}
           setActiveModal={setActiveModal}
           handleCloseModal={handleCloseActiveModal}
+          currentUser={currentUser}
         />
         <Routes>
           <Route

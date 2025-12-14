@@ -10,6 +10,7 @@ const Header = ({
   handleMobileMenu,
   activeModal,
   handleCloseModal,
+  currentUser,
 }) => {
   const location = useLocation();
   const isOnSavedNews = location.pathname === "/saved-news";
@@ -30,6 +31,7 @@ const Header = ({
           activeModal={activeModal}
           handleMobileMenu={handleMobileMenu}
           handleCloseModal={handleCloseModal}
+          currentUser={currentUser}
         />
       </div>
     </header>
