@@ -87,7 +87,6 @@
 
 @media screen and (max-width: 465px) {
 
-
   .saved-news__container {
     padding-top: 64px;
   }
@@ -119,9 +118,6 @@
   .saved-news__card-list {
     justify-content: center;
   }
-
-
-
 
 }
 
