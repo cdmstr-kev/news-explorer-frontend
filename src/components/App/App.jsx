@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext.jsx";
-import { NewsContext } from "../../contexts/NewsContext.jsx";
+import { AuthContext } from "../../contexts/auth-context.js";
+import { NewsContext } from "../../contexts/news-context.js";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";

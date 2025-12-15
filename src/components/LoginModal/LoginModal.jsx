@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext.jsx";
-import { ModalContext } from "../../contexts/ModalContext.jsx";
+import { AuthContext } from "../../contexts/auth-context.js";
+import { ModalContext } from "../../contexts/modal-context.js";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";

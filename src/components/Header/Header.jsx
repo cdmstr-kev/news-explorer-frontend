@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ModalContext } from "../../contexts/ModalContext.jsx";
+import { ModalContext } from "../../contexts/modal-context.js";
 import "./Header.css";
 import Navigation from "../Navigation/Navigation.jsx";
 import { useLocation } from "react-router-dom";

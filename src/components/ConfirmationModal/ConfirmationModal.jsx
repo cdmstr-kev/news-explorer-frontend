@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ModalContext } from "../../contexts/ModalContext.jsx";
+import { ModalContext } from "../../contexts/modal-context.js";
 
 import { Modal } from "../Modal/Modal.jsx";
 import "./ConfirmationModal.css";

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext.jsx";
-import { NewsContext } from "../../contexts/NewsContext.jsx";
+import { AuthContext } from "../../contexts/auth-context.js";
+import { NewsContext } from "../../contexts/news-context.js";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import NewsCard from "../NewsCard/NewsCard.jsx";

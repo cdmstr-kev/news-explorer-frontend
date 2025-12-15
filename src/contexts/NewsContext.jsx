@@ -1,9 +1,8 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { queryNewsApi } from "../utils/newsapi.js";
 import { saveArticle, deleteArticle } from "../utils/api.js";
-import { AuthContext } from "./AuthContext.jsx";
-
-export const NewsContext = createContext();
+import { AuthContext } from "./auth-context.js";
+import { NewsContext } from "./news-context.js";
 
 export const NewsProvider = ({ children }) => {
   const { currentUser, isLoggedIn } = useContext(AuthContext);
@@ -12,7 +11,7 @@ export const NewsProvider = ({ children }) => {
   const [news, setNews] = useState([]);
   const [tags, setTags] = useState("Default");
   const [articlesToShow, setArticlesToShow] = useState(3);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchError, setSearchError] = useState("");
   const [apiError, setApiError] = useState("");
 

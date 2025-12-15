@@ -116,6 +116,12 @@
     padding: 24px 16px;
   }
 
+  .saved-news__card-list {
+    justify-content: center;
+  }
+
+
+
 
 }
 

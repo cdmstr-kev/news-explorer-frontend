@@ -1,6 +1,5 @@
-import { createContext, useState } from "react";
-
-export const ModalContext = createContext();
+import { useState } from "react";
+import { ModalContext } from "./modal-context.js";
 
 export const ModalProvider = ({ children }) => {
   const [activeModal, setActiveModal] = useState("");

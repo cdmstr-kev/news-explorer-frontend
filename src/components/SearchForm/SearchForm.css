@@ -82,7 +82,12 @@
     align-items: center;
     flex-direction: column;
     gap: 16px;
-    max-width: 288px;
+    padding: 0 19px 0 19px;
+    box-sizing: border-box;
+  }
+
+  main__content-title {
+    padding: 0 19px;
   }
 
 }

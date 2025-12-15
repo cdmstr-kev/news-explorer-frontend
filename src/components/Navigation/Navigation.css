@@ -58,6 +58,7 @@
 }
 
 .nav__mobile-overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -94,6 +95,7 @@
 }
 
 .nav__mobile-menu {
+  display: none;
   position: fixed;
   top: 0;
   right: -100%;

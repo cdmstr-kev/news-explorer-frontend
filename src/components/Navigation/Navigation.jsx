@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ModalContext } from "../../contexts/ModalContext.jsx";
-import { AuthContext } from "../../contexts/AuthContext.jsx";
+import { ModalContext } from "../../contexts/modal-context.js";
+import { AuthContext } from "../../contexts/auth-context.js";
 
 import logoutIcon from "../../assets/logout.png";
 import logoutIconDark from "../../assets/logout-dark.png";
