@@ -1,0 +1,16 @@
+.modal__error_type_login {
+  font-family: roboto, Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: red;
+  position: absolute;
+  top: 138px;
+  padding: 0;
+}
+
+@media screen and (max-width: 465px) {
+  .modal__error_type_login {
+    top: 112px;
+  }
+}

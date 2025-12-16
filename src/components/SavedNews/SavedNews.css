@@ -1,0 +1,125 @@
+.saved-news__container {
+  padding-top: 120px;
+}
+
+.saved-news__header {
+  padding: 0 104px;
+}
+
+.saved-news__articles {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin: 0 0 28px 0;
+  color: rgba(26, 27, 34, 0.5);
+}
+
+.saved-news__title {
+  font-family: 'roboto-slab', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  letter-spacing: 0;
+
+
+  margin: 0 0 30px 0;
+}
+
+.saved-news__subtitle {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 52px 0;
+}
+
+.saved-news__subtitle_type_bold {
+  font-family: 'roboto', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.saved-news__card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  padding: 62px 104px;
+  margin: 0;
+  background-color: #F5F6F7;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .saved-news__container {
+    padding-top: 90px;
+  }
+
+  .saved-news__header {
+    padding: 0 40px;
+  }
+
+  .saved-news__articles {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 0 16px 0;
+  }
+
+  .saved-news__title {
+    font-size: 30px;
+    line-height: 34px;
+    margin-bottom: 16px;
+  }
+
+  .saved-news__subtitle {
+    margin: 0 0 32px 0;
+  }
+
+  .saved-news__card-list {
+    gap: 8px;
+    padding: 32px 40px;
+  }
+}
+
+@media screen and (max-width: 465px) {
+
+  .saved-news__container {
+    padding-top: 64px;
+  }
+
+  .saved-news__header {
+    padding: 0 16px;
+  }
+
+  .saved-news__articles {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 0 16px 0;
+  }
+
+  .saved-news__title {
+    font-size: 30px;
+    line-height: 34px;
+    margin-bottom: 50px;
+  }
+
+  .saved-news__subtitle {
+    margin: 0 0 32px 0;
+  }
+
+  .saved-news__card-list {
+    padding: 24px 16px;
+  }
+
+  .saved-news__card-list {
+    justify-content: center;
+  }
+
+}
+
+
+

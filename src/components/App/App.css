@@ -1,0 +1,23 @@
+.app, .page, .root {
+  width: 100%;
+  max-width: 100%;
+}
+
+
+.app {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.app__content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}

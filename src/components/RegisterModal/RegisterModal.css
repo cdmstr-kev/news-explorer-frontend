@@ -1,0 +1,17 @@
+.modal__error_type_register {
+  font-family: roboto, Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: red;
+  position: absolute;
+  top: 307px;
+  padding: 0;
+  align-self: center;
+}
+
+@media screen and (max-width: 465px) {
+  .modal__error_type_register {
+    top: 265px;
+  }
+}
