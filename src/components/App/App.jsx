@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth-context.js";
 import { NewsContext } from "../../contexts/news-context.js";
+import { ModalContext } from "../../contexts/modal-context.js";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
@@ -10,11 +11,23 @@ import Footer from "../Footer/Footer.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
-import { saveUserToStorage } from "../../utils/helpers.js";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
+  const { handleSignUp } = useContext(AuthContext);
+  const { setActiveModal, handleCloseActiveModal } = useContext(ModalContext);
+
+  const handleRegistration = (newUser) => {
+    handleSignUp(newUser)
+      .then(() => {
+        handleCloseActiveModal();
+        setActiveModal("confirmation-modal");
+      })
+      .catch((err) => {
+        console.error("Registration error:", err);
+      });
+  };
 
   const {
     searchQuery,
@@ -30,10 +43,6 @@ function App() {
     handleSearch,
     handleBookmark,
   } = useContext(NewsContext);
-
-  const handleRegistration = (newUser) => {
-    saveUserToStorage(newUser);
-  };
 
   return (
     <div className="app">
