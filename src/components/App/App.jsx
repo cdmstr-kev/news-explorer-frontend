@@ -14,12 +14,11 @@ import LoginModal from "../LoginModal/LoginModal.jsx";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
-  const { handleSignUp } = useContext(AuthContext);
+  const { handleSignup, isLoggedIn } = useContext(AuthContext);
   const { setActiveModal, handleCloseActiveModal } = useContext(ModalContext);
 
   const handleRegistration = (newUser) => {
-    handleSignUp(newUser)
+    handleSignup(newUser)
       .then(() => {
         handleCloseActiveModal();
         setActiveModal("confirmation-modal");

@@ -51,7 +51,7 @@ export const getCurrentUser = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer  + ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 };
@@ -61,7 +61,7 @@ export const checkToken = () => {
 };
 
 export const register = (userData) => {
-  const { email, password } = userData;
+  const { email, password, username } = userData;
 
   return fetch(`${backendBaseUrl}/users/signup`, {
     method: "POST",
