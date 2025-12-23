@@ -33,13 +33,19 @@ const makeBackendRequest = (endpoint, options = {}) => {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  return fetch(`$backendUrl}${endpoint}`, { ...options, headers }).then(
+  return fetch(`${backendBaseUrl}${endpoint}`, { ...options, headers }).then(
     handleApiResponse
   );
 };
 
 export const getArticles = () => {
-  return makeBackendRequest("/articles");
+  return makeBackendRequest("/articles").then((articles) => {
+    return articles.map((article) => ({
+      ...article,
+      tag: article.keyword,
+      url: article.link,
+    }));
+  });
 };
 
 export const saveArticle = (article) => {

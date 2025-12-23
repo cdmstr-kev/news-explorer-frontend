@@ -67,7 +67,7 @@ export const Main = ({
                 {displayedArticles?.slice(0, articlesToShow).map((article) => {
                   const isThisArticleBookmarked =
                     isLoggedIn &&
-                    bookmarkedNews?.some((item) => item.url === article.url);
+                    bookmarkedNews?.some((item) => item.link === article.url);
 
                   const handleToggle = () => {
                     onCardBookmarked(article);

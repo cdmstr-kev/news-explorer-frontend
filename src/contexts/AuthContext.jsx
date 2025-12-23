@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState("null");
   const [loginErrors, setLoginErrors] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -28,6 +28,8 @@ export const AuthProvider = ({ children }) => {
           setCurrentUser(null);
           setIsLoading(false);
         });
+    } else {
+      setCurrentUser(null);
     }
   }, []);
 

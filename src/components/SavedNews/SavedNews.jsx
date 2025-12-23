@@ -8,24 +8,25 @@ import "./SavedNews.css";
 import { getTags } from "../../utils/helpers.js";
 
 const SavedNews = () => {
-  const { currentUser, isLoggedIn } = useContext(AuthContext);
+  const { currentUser, isLoggedIn, isLoading } = useContext(AuthContext);
   const { bookmarkedNews, handleDeleteBookmark } = useContext(NewsContext);
   const navigate = useNavigate();
 
-  const userBookmarks = bookmarkedNews.filter(
-    (article) => article.user === currentUser.email
-  );
-  const allTags = getTags(userBookmarks);
+  const userBookmarks = Array.isArray(bookmarkedNews) ? bookmarkedNews : [];
+  const allTags =
+    userBookmarks.length > 0
+      ? getTags(userBookmarks)
+      : { uniqueTags: [], displayedTags: [], otherTags: 0 };
   const totalArticles = userBookmarks.length;
   const userTags = allTags.uniqueTags;
   const displayedTags = allTags.displayedTags;
   const otherTags = allTags.otherTags;
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isLoading && !isLoggedIn) {
       navigate("/");
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, isLoading, navigate]);
 
   return (
     <div className={"saved-news__container"}>
