@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
         });
     } else {
       setCurrentUser(null);
+      setIsLoading(false);
     }
   }, []);
 

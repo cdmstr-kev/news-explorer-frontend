@@ -8,6 +8,7 @@ import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
@@ -68,7 +69,14 @@ function App() {
               />
             }
           />
-          <Route path={"/saved-news"} element={<SavedNews />} />
+          <Route
+            path={"/saved-news"}
+            element={
+              <ProtectedRoute>
+                <SavedNews />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
 
         <Footer />
