@@ -58,6 +58,7 @@ src/
 │   ├── Main/
 │   ├── Navigation/
 │   ├── NewsCard/
+│   ├── ProtectedRoute/  # HOC for route protection
 │   ├── SavedNews/
 │   ├── Modal/
 │   └── ...
@@ -158,6 +159,20 @@ src/
   - useForm - Form validation and state management
   - useModalClose - Click outside and ESC key modal closing
 
+  Protected Routes (Higher-Order Component)
+
+  - **ProtectedRoute HOC** wraps routes requiring authentication
+  - Centralizes auth logic instead of duplicating in each protected component
+  - **Automatic login modal**: Opens sign-in modal when unauthorized user attempts access
+  - **Loading state handling**: Shows nothing during auth check to prevent flicker
+  - **Redirect on unauthorized**: Navigates to home page if user not logged in
+  - **Implementation**:
+    - Wraps SavedNews route in App.jsx
+    - Checks `isLoggedIn` and `isLoading` from AuthContext
+    - Triggers `setActiveModal("signin-modal")` via ModalContext
+    - Returns `<Navigate to="/" replace />` for unauthorized users
+    - Returns `children` for authenticated users
+
   Data Persistence
 
   - User accounts stored in MongoDB
@@ -193,7 +208,11 @@ src/
   - JWT authentication with token validation
   - Request validation with Joi schemas
   - Authorization checks - Users can only delete their own articles
-  - Protected routes - Authentication required for saving/viewing articles
+  - **Protected routes via ProtectedRoute HOC**:
+    - Prevents unauthorized access to SavedNews page
+    - Automatically opens login modal for unauthorized users
+    - Redirects to home if not authenticated
+    - Handles loading states to prevent premature redirects
 
   Future Enhancements
 
