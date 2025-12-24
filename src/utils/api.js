@@ -5,25 +5,26 @@ const backendBaseUrl =
     ? "https://api.newsexplorer.cdmstr.com"
     : import.meta.env.VITE_BACKEND_API_URL;
 
-export const handleApiResponse = (res) => {
+export const handleApiResponse = async (res) => {
   if (res.ok) {
     return res.json();
   }
 
-  return res
-    .json()
-    .then((data) => {
-      const error = new Error(
-        data.message || `HTTP ${res.status}: ${res.statusText}`
-      );
-      error.status = res.status;
-      return Promise.reject(error);
-    })
-    .catch(() => {
-      const error = new Error(`HTTP ${res.status}: ${res.statusText}`);
-      error.status = res.status;
-      return Promise.reject(error);
-    });
+  try {
+    const data = await res.json();
+    const error = new Error(
+      data.message || `HTTP ${res.status}: ${res.statusText}`
+    );
+    error.status = res.status;
+    throw error;
+  } catch (err) {
+    if (err.message && !err.message.includes("Unexpected")) {
+      throw err;
+    }
+    const error = new Error(`HTTP ${res.status}: ${res.statusText}`);
+    error.status = res.status;
+    throw error;
+  }
 };
 
 const makeBackendRequest = (endpoint, options = {}) => {

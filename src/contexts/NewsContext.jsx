@@ -89,7 +89,12 @@ export const NewsProvider = ({ children }) => {
 
       saveArticle(articleToSave)
         .then((savedArticle) => {
-          setBookmarkedNews([savedArticle, ...bookmarkedNews]);
+          const mappedArticle = {
+            ...savedArticle,
+            tag: savedArticle.keyword,
+            url: savedArticle.link,
+          };
+          setBookmarkedNews([mappedArticle, ...bookmarkedNews]);
         })
         .catch((err) => console.error("Failed to save bookmark:", err));
     }
