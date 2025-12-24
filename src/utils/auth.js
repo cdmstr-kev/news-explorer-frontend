@@ -1,4 +1,4 @@
-import { validateUserCredentials, saveUserToStorage } from "./helpers.js";
+/* global process */
 
 const backendBaseUrl =
   process.env.NODE_ENV === "production"
@@ -19,7 +19,7 @@ const checkResponse = (res) => {
       error.status = res.status;
       return Promise.reject(error);
     })
-    .catch((parseError) => {
+    .catch(() => {
       const error = new Error(`HTTP ${res.status}: ${res.statusText}`);
       error.status = res.status;
       return Promise.reject(error);

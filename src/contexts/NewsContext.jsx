@@ -5,7 +5,7 @@ import { AuthContext } from "./auth-context.js";
 import { NewsContext } from "./news-context.js";
 
 export const NewsProvider = ({ children }) => {
-  const { currentUser, isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [news, setNews] = useState([]);
