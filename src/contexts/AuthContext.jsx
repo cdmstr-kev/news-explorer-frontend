@@ -6,7 +6,7 @@ import { AuthContext } from "./auth-context.js";
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState("null");
+  const [currentUser, setCurrentUser] = useState(null);
   const [loginErrors, setLoginErrors] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 

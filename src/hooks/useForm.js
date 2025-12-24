@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const UseForm = (defaultValues) => {
+const useForm = (defaultValues) => {
   const [values, setValues] = useState(defaultValues);
   const [errors, setErrors] = useState({ email: "" });
   const allFieldsFilled = Object.values(values).every((value) => value !== "");
@@ -38,4 +38,4 @@ const UseForm = (defaultValues) => {
   };
 };
 
-export default UseForm;
+export default useForm;

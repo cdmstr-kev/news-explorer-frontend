@@ -28,7 +28,7 @@ const checkResponse = async (res) => {
 };
 
 export const login = (email, password) => {
-  return fetch(`${backendBaseUrl}/users/signin`, {
+  return fetch(`${backendBaseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export const checkToken = () => {
 export const register = (userData) => {
   const { email, password, username } = userData;
 
-  return fetch(`${backendBaseUrl}/users/signup`, {
+  return fetch(`${backendBaseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
