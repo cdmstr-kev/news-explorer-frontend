@@ -1,4 +1,7 @@
-const backendBaseUrl = import.meta.env.VITE_BACKEND_API_URL;
+const backendBaseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.newsexplorer.cdmstr.com"
+    : import.meta.env.VITE_BACKEND_API_URL;
 
 export const handleApiResponse = (res) => {
   if (res.ok) {
