@@ -39,14 +39,9 @@ export const AuthProvider = ({ children }) => {
     setLoginErrors("");
 
     return register(userData)
-      .then((res) => {
-        return getCurrentUser();
-      })
-      .then((user) => {
-        setCurrentUser(user);
-        setIsLoggedIn(true);
+      .then((data) => {
         setIsLoading(false);
-        return user;
+        return data;
       })
       .catch((err) => {
         console.error("Failed to register user:", err);
