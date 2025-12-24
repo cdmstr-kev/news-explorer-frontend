@@ -1,31 +1,23 @@
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth-context.js";
 import { NewsContext } from "../../contexts/news-context.js";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import "./SavedNews.css";
 import { getTags } from "../../utils/helpers.js";
 
 const SavedNews = () => {
-  const { currentUser, isLoggedIn } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { bookmarkedNews, handleDeleteBookmark } = useContext(NewsContext);
-  const navigate = useNavigate();
 
-  const userBookmarks = bookmarkedNews.filter(
-    (article) => article.user === currentUser.email
-  );
-  const allTags = getTags(userBookmarks);
+  const userBookmarks = Array.isArray(bookmarkedNews) ? bookmarkedNews : [];
+  const allTags =
+    userBookmarks.length > 0
+      ? getTags(userBookmarks)
+      : { uniqueTags: [], displayedTags: [], otherTags: 0 };
   const totalArticles = userBookmarks.length;
   const userTags = allTags.uniqueTags;
   const displayedTags = allTags.displayedTags;
   const otherTags = allTags.otherTags;
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn, navigate]);
 
   return (
     <div className={"saved-news__container"}>

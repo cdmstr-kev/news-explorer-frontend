@@ -1,53 +1,71 @@
-const newsApiBaseUrl =
-  import.meta.env.PROD === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
+const backendBaseUrl = import.meta.env.PROD
+  ? "https://api.newsexplorer.cdmstr.com"
+  : import.meta.env.VITE_BACKEND_API_URL;
 
-export const handleApiResponse = (res) => {
+export const handleApiResponse = async (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(new Error(`HTTP ${res.status}: ${res.statusText}`));
+
+  try {
+    const data = await res.json();
+    const error = new Error(
+      data.message || `HTTP ${res.status}: ${res.statusText}`
+    );
+    error.status = res.status;
+    throw error;
+  } catch (err) {
+    if (err.message && !err.message.includes("Unexpected")) {
+      throw err;
+    }
+    const error = new Error(`HTTP ${res.status}: ${res.statusText}`);
+    error.status = res.status;
+    throw error;
+  }
 };
 
-export const makeRequest = (endpoint, options = {}) => {
-  const url = `${newsApiBaseUrl}${endpoint}`;
+const makeBackendRequest = (endpoint, options = {}) => {
+  const token = localStorage.getItem("jwt");
 
-  return fetch(url, options).then(handleApiResponse);
+  const headers = {
+    "Content-Type": "application/json",
+    ...options?.headers,
+  };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return fetch(`${backendBaseUrl}${endpoint}`, { ...options, headers }).then(
+    handleApiResponse
+  );
 };
 
-export const getItems = () => {
-  return new Promise((resolve) => {
-    const saved = localStorage.getItem("bookmarkedNews");
-    const articles = saved ? JSON.parse(saved) : [];
-    resolve(articles);
+export const getArticles = () => {
+  return makeBackendRequest("/articles").then((articles) => {
+    return articles.map((article) => ({
+      ...article,
+      tag: article.keyword,
+      url: article.link,
+    }));
   });
 };
 
 export const saveArticle = (article) => {
-  return new Promise((resolve) => {
-    const saved = localStorage.getItem("bookmarkedNews");
-    const articles = saved ? JSON.parse(saved) : [];
-
-    const articleWithId = {
-      ...article,
-      _id: `article-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    };
-
-    articles.push(articleWithId);
-    localStorage.setItem("bookmarkedNews", JSON.stringify(articles));
-    resolve(articleWithId);
+  return makeBackendRequest("/articles", {
+    method: "POST",
+    body: JSON.stringify({
+      keyword: article.tag,
+      title: article.title,
+      text: article.description || article.content,
+      date: article.publishedAt,
+      source: article.source?.name || "Unknown",
+      link: article.url,
+      image: article.urlToImage,
+    }),
   });
 };
 
-export const deleteArticle = (articleUrl) => {
-  return new Promise((resolve) => {
-    const saved = localStorage.getItem("bookmarkedNews");
-    const articles = saved ? JSON.parse(saved) : [];
-
-    const filtered = articles.filter((article) => article.url !== articleUrl);
-    localStorage.setItem("bookmarkedNews", JSON.stringify(filtered));
-
-    resolve({ message: "Article deleted", url: articleUrl });
-  });
+export const deleteArticle = (articleId) => {
+  return makeBackendRequest(`/articles/${articleId}`, { method: "DELETE" });
 };

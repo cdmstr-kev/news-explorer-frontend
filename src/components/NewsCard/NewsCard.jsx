@@ -11,17 +11,17 @@ const NewsCard = ({
   onActionClick,
   tag,
 }) => {
-  const publishedDate = formatDate(newsArticle.publishedAt);
-  const newsContent = stripHtml(newsArticle.description);
+  const publishedDate = formatDate(newsArticle.date);
+  const newsContent = stripHtml(newsArticle.text);
 
   return (
     <li className="card">
-      {newsArticle.urlToImage === null ? (
+      {newsArticle.image === null || !newsArticle.image ? (
         <img className={"card__image"} src={placeholder} alt="card-image" />
       ) : (
         <img
           className={"card__image"}
-          src={newsArticle.urlToImage}
+          src={newsArticle.image}
           alt="card-image"
         />
       )}
@@ -33,12 +33,12 @@ const NewsCard = ({
             {newsArticle.title}
           </a>
         </h1>
-        {newsArticle.content === null ? (
+        {!newsArticle.text ? (
           <p className={"card__description"}>No Content</p>
         ) : (
           <p className={"card__description"}>{newsContent}</p>
         )}
-        <p className={"card__subtitle"}>{newsArticle.source.name}</p>
+        <p className={"card__subtitle"}>{newsArticle.source}</p>
       </div>
       <div className={"card__actions"}>
         {variant === "search" ? (
