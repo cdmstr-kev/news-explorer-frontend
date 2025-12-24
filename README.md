@@ -94,7 +94,7 @@ src/
 
   3. Create a .env file in the root directory:
   VITE_NEWS_API_KEY=your_newsapi_key_here
-  VITE_BACKEND_API_URL=http://localhost:3001
+  VITE_BACKEND_API_URL=http://localhost:3000
 
   4. Start the backend server first (in separate terminal):
   cd ../news-explorer-backend
@@ -110,7 +110,7 @@ src/
   | Variable             | Description       | Example               |
   |----------------------|-------------------|-----------------------|
   | VITE_NEWS_API_KEY    | Your News API key | abc123...             |
-  | VITE_BACKEND_API_URL | Backend API URL   | http://localhost:3001 |
+  | VITE_BACKEND_API_URL | Backend API URL   | http://localhost:3000 |
 
   Available Scripts
 
@@ -134,8 +134,8 @@ src/
 
   Authentication Flow
 
-  - Registration: POST to /users/signup → Returns JWT token
-  - Login: POST to /users/signin → Returns JWT token
+  - Registration: POST to /signup → Returns success message (no token)
+  - Login: POST to /signin → Returns JWT token
   - Token Validation: GET to /users/me with JWT → Returns user data
   - Persistent Login: JWT stored in localStorage, validated on app mount
 
@@ -191,8 +191,8 @@ src/
 
   Backend API
 
-  - POST /users/signup - Register new user
-  - POST /users/signin - Login user
+  - POST /signup - Register new user
+  - POST /signin - Login user
   - GET /users/me - Get current user (authenticated)
   - GET /articles - Get user's saved articles (authenticated)
   - POST /articles - Save new article (authenticated)
@@ -231,7 +231,7 @@ src/
 
   - Frontend Framework: React 18
   - Build Tool: Vite 5
-  - Routing: React Router 6 (BrowserRouter)
+  - Routing: React Router 7 (BrowserRouter)
   - HTTP Client: Fetch API
   - State Management: React Context API
   - Styling: CSS3 with BEM
@@ -242,6 +242,17 @@ src/
   - Developed as part of the TripleTen Web Development Bootcamp
   - News data provided by https://newsapi.org
   - Design specifications by TripleTen
+
+  Live Deployment
+
+  🌐 **Live Site**: https://newsexplorer.cdmstr.com
+  🔗 **Backend API**: https://api.newsexplorer.cdmstr.com
+
+  The application is deployed on Google Cloud Platform with:
+  - Frontend: Nginx serving static React build
+  - Backend: PM2 process manager with Node.js/Express
+  - Database: MongoDB
+  - SSL: Certbot (Let's Encrypt)
 
   Project Demo
 
