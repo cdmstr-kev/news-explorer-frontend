@@ -7,7 +7,6 @@
   display: flex;
   width: 100%;
   border-bottom: rgba(255, 255, 255, .1) .5px solid;
-  max-width: 1440px;
 }
 
 .header_theme_dark {

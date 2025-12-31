@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/modal-context.js";
 import "./Main.css";
 import SearchForm from "../SearchForm/SearchForm.jsx";
 import About from "../About/About.jsx";
@@ -20,6 +22,7 @@ export const Main = ({
   apiError,
   isLoading,
 }) => {
+  const { setActiveModal } = useContext(ModalContext);
   const displayedArticles = newsArray.slice(0, articlesToShow);
 
   const handleShowMore = () => {
@@ -67,9 +70,12 @@ export const Main = ({
                 {displayedArticles?.slice(0, articlesToShow).map((article) => {
                   const isThisArticleBookmarked =
                     isLoggedIn &&
-                    bookmarkedNews?.some((item) => item.url === article.url);
+                    bookmarkedNews?.some((item) => item.link === article.url);
 
                   const handleToggle = () => {
+                    if (!isLoggedIn) {
+                      setActiveModal("register-modal");
+                    }
                     onCardBookmarked(article);
                   };
 

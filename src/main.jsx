@@ -1,4 +1,4 @@
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import React from "react";
 
 import ReactDOM from "react-dom/client";
@@ -10,7 +10,7 @@ import { NewsProvider } from "./contexts/NewsContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
       <ModalProvider>
         <AuthProvider>
           <NewsProvider>
@@ -18,6 +18,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </NewsProvider>
         </AuthProvider>
       </ModalProvider>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 );

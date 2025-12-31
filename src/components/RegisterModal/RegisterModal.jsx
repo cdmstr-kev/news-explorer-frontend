@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/modal-context.js";
-import { AuthContext } from "../../contexts/auth-context.js";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 import "./RegisterModal.css";
-import { checkUserInStorage } from "../../utils/helpers.js";
 
 const RegisterModal = ({ onUserRegister }) => {
   const defaultValues = {
@@ -18,30 +16,17 @@ const RegisterModal = ({ onUserRegister }) => {
     activeModal,
     handleCloseActiveModal,
     handleOpenSignIn,
-    setActiveModal,
   } = useContext(ModalContext);
-
-  const { setIsLoading } = useContext(AuthContext);
 
   const isOpen = activeModal === "register-modal";
 
-  const { values, handleChange, resetForm, errors, setErrors, isFormValid } =
+  const { values, handleChange, resetForm, errors, isFormValid } =
     useForm(defaultValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const usernameExists = checkUserInStorage(values.email);
-
-    if (usernameExists && values.email !== "") {
-      setErrors({ ...errors, email: "Email already exists" });
-    } else {
-      setIsLoading(true);
-      onUserRegister(values);
-      resetForm();
-      setIsLoading(false);
-      setActiveModal("confirmation-modal");
-    }
+    onUserRegister(values);
+    resetForm();
   };
 
   return (
